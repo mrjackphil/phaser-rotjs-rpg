@@ -5,6 +5,7 @@ import MapGenerator from './map'
 import RendererText from './renderer'
 import StateManager from './state'
 import { generateRNGlocation } from './utils'
+import CollisionManager from './collision'
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -36,21 +37,18 @@ function create() {
   const state = new StateManager
   const input: InputSystem = new Input(scene)
   const renderer = new RendererText(scene, state)
-  const player = new Player(input, scene, renderer)
+  const collision = new CollisionManager(state)
+  const player = new Player(input, collision, renderer)
   const map = new MapGenerator(renderer, state)
 
   map.generate()
-
-  const isSolid = (solids: Movable[], s: Movable) => {
-    return solids.filter( e => e.x === s.x && e.y === s.y).length > 0
-  }
 
   const getRandomNotSolidPosition = () => {
     const width = state.gridWidth
     const height = state.gridHeight
 
     const vect = generateRNGlocation(width, height)
-    return isSolid( state.solids, vect )
+    return collision.isSolid( vect )
       ? getRandomNotSolidPosition()
       : vect
   }

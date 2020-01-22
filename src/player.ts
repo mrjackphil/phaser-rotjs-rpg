@@ -1,12 +1,17 @@
+import CollisionManager from "./collision"
+
 const PLAYER_MOVE_SPEED = 2
 
 export default class Player implements Updated {
   speed: number;
   input: InputSystem
   element: Movable
-  constructor(input: InputSystem, scene: Phaser.Scene, renderer: Renderer) {
+  collision: CollisionManager
+
+  constructor(input: InputSystem, collision: CollisionManager, renderer: Renderer) {
     this.input = input
     this.speed = PLAYER_MOVE_SPEED
+    this.collision = collision
     this.element = renderer.renderPlayer(0, 0)
   }
 
@@ -34,9 +39,20 @@ export default class Player implements Updated {
         // this.element.y+=speed
         vect.y = speed;
     }
-    this.element.x+=vect.x
-    this.element.y+=vect.y
+
+    if (!this.collision.isSolid(this.getCurrentGridPosition(this.element.x + vect.x, this.element.y + vect.y))) {
+      this.element.x+=vect.x
+      this.element.y+=vect.y
+    }
   }
+
+  private getCurrentGridPosition(_x?: number, _y?: number) {
+    const x = _x || this.element.x
+    const y = _y || this.element.y
+
+    return {
+      x: Math.floor(x / 16),
+      y: Math.floor(y / 16)
     }
   }
 }
