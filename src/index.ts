@@ -4,7 +4,7 @@ import Player from './player'
 import MapGenerator from './map'
 import RendererText from './renderer'
 import StateManager from './state'
-import { RNG } from 'rot-js'
+import { generateRNGlocation } from './utils'
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -40,13 +40,6 @@ function create() {
   const map = new MapGenerator(renderer, state)
 
   map.generate()
-
-  const generateRNGlocation = (maxX: number, maxY: number): Movable => (
-    {
-      x: RNG.getUniformInt(0, maxX - 1),
-      y: RNG.getUniformInt(0, maxY - 1)
-    }
-  )
 
   const isSolid = (solids: Movable[], s: Movable) => {
     return solids.filter( e => e.x === s.x && e.y === s.y).length > 0
