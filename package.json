@@ -1,0 +1,20 @@
+{
+  "license": "MIT",
+  "scripts": {
+    "start": "rollup -c -w"
+  },
+  "dependencies": {
+    "phaser": "^3.22.0",
+    "rot-js": "^2.1.1",
+    "typescript": "^3.7.5"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-html": "^0.1.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "@rollup/plugin-typescript": "^2.1.0",
+    "rollup-plugin-livereload": "^1.0.4",
+    "rollup-plugin-serve": "^1.0.1",
+    "tslib": "^1.10.0"
+  }
+}
