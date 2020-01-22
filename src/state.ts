@@ -1,7 +1,7 @@
 export default class StateManager {
-  solid: Movable[] = [];
+  solids: Movable[] = [];
 
-  private addSolid(o: Movable) {
-    this.solid.push(o)
+  public addSolid(o: Movable) {
+    this.solids.push(o)
   }
 }

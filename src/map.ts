@@ -1,6 +1,7 @@
 import * as ROT from 'rot-js'
 import Map from 'rot-js/lib/map/map'
 import Digger from 'rot-js/lib/map/digger'
+import StateManager from './state'
 
 const WIDTH = 50
 const HEIGHT = 37
@@ -8,12 +9,14 @@ const HEIGHT = 37
 export default class MapGenerator {
   render: Renderer;
   map: Map;
+  state: StateManager
 
-  constructor(render: Renderer) {
+  constructor(render: Renderer, state: StateManager) {
     this.render = render
+    this.state = state
   }
 
-  public generate(scene?: Phaser.Scene) {
+  public generate() {
     this.map = new ROT.Map.Digger(WIDTH, HEIGHT)
     this.map.create(this.mapgenCallback.bind(this))
     this.drawDoors()
@@ -32,6 +35,7 @@ export default class MapGenerator {
   private mapgenCallback(x: number, y: number, isWall: 0 | 1) {
     if (isWall) {
       this.renderWall(x, y)
+      this.state.addSolid({ x, y })
     }
   }
 

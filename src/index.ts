@@ -36,9 +36,9 @@ function create() {
   const input: InputSystem = new Input(scene)
   const renderer = new RendererText(scene)
   const player = new Player(input, scene, renderer)
-  const map = new MapGenerator(renderer)
+  const map = new MapGenerator(renderer, state)
 
-  map.generate(scene)
+  map.generate()
   entitiesToUpdate.push(player)
 }
 
