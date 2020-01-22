@@ -30,7 +30,9 @@ export default class MapGenerator {
   }
 
   private mapgenCallback(x: number, y: number, isWall: 0 | 1) {
-    isWall && this.renderWall(x, y)
+    if (isWall) {
+      this.renderWall(x, y)
+    }
   }
 
   private renderWall(x: number, y: number) {
