@@ -45,17 +45,17 @@ function create() {
     return solids.filter( e => e.x === s.x && e.y === s.y).length > 0
   }
 
-  const recursevlyCheckPosition = () => {
+  const getRandomNotSolidPosition = () => {
     const width = state.gridWidth
     const height = state.gridHeight
 
     const vect = generateRNGlocation(width, height)
     return isSolid( state.solids, vect )
-      ? recursevlyCheckPosition()
+      ? getRandomNotSolidPosition()
       : vect
   }
 
-  const gen = recursevlyCheckPosition()
+  const gen = getRandomNotSolidPosition()
 
   player.element.x = gen.x * state.gridSize
   player.element.y = gen.y * state.gridSize
