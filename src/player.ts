@@ -11,10 +11,10 @@ export default class Player implements Updated {
   }
 
   public update() {
-    this.movePlayer()
+    this.move()
   }
 
-  private movePlayer() {
+  private move() {
     const { speed, input } = this
 
     const vect = { x: 0, y: 0 }
