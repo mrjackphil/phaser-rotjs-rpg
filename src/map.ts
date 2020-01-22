@@ -3,9 +3,6 @@ import Map from 'rot-js/lib/map/map'
 import Digger from 'rot-js/lib/map/digger'
 import StateManager from './state'
 
-const WIDTH = 50
-const HEIGHT = 37
-
 export default class MapGenerator {
   render: Renderer;
   map: Map;
@@ -17,7 +14,10 @@ export default class MapGenerator {
   }
 
   public generate() {
-    this.map = new ROT.Map.Digger(WIDTH, HEIGHT)
+    const width = this.state.gridWidth
+    const height = this.state.gridHeight
+
+    this.map = new ROT.Map.Digger(width, height)
     this.map.create(this.mapgenCallback.bind(this))
     this.drawDoors()
   }

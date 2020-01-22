@@ -53,10 +53,10 @@ function create() {
   }
 
   const recursevlyCheckPosition = () => {
-    const WIDTH = 50
-    const HEIGHT = 37
+    const width = state.gridWidth
+    const height = state.gridHeight
 
-    const vect = generateRNGlocation(WIDTH, HEIGHT)
+    const vect = generateRNGlocation(width, height)
     return isSolid( state.solids, vect )
       ? recursevlyCheckPosition()
       : vect
@@ -64,8 +64,8 @@ function create() {
 
   const gen = recursevlyCheckPosition()
 
-  player.element.x = gen.x * 16
-  player.element.y = gen.y * 16
+  player.element.x = gen.x * state.gridSize
+  player.element.y = gen.y * state.gridSize
 
   entitiesToUpdate.push(player)
 }
