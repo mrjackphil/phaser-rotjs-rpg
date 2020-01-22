@@ -17,16 +17,26 @@ export default class Player implements Updated {
   private movePlayer() {
     const { speed, input } = this
 
+    const vect = { x: 0, y: 0 }
+
     if (input.isLeft()) {
-        this.element.x-=speed
+        // this.element.x-=speed
+        vect.x = -speed;
     } else if (input.isRight()) {
-        this.element.x+=speed
+        // this.element.x+=speed
+        vect.x = speed;
     }
 
     if (input.isUp()) {
-        this.element.y-=speed
+        // this.element.y-=speed
+        vect.y = -speed;
     } else if (input.isDown()) {
-        this.element.y+=speed
+        // this.element.y+=speed
+        vect.y = speed;
+    }
+    this.element.x+=vect.x
+    this.element.y+=vect.y
+  }
     }
   }
 }
