@@ -10,13 +10,15 @@ export default class RendererText implements Renderer {
     const { scene } = this
     const fontSize = FONT_SIZE
 
-    return scene?.add.bitmapText(
+    const wall = scene?.add.bitmapText(
       x * fontSize,
       y * fontSize,
       "Moho",
       "#",
       fontSize
     )
+
+    wall.setAlpha(0.5)
   }
 
   public renderPlayer(x: number, y: number) {
