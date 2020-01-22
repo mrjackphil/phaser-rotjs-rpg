@@ -4,6 +4,7 @@ import Player from './player'
 import MapGenerator from './map'
 import RendererText from './renderer'
 import StateManager from './state'
+import { RNG } from 'rot-js'
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -39,6 +40,33 @@ function create() {
   const map = new MapGenerator(renderer, state)
 
   map.generate()
+
+  const generateRNGlocation = (maxX: number, maxY: number): Movable => (
+    {
+      x: RNG.getUniformInt(0, maxX),
+      y: RNG.getUniformInt(0, maxY)
+    }
+  )
+
+  const isSolid = (solids: Movable[], s: Movable) => {
+    return solids.filter( e => e.x === s.x && e.y === s.y).length > 0
+  }
+
+  const recursevlyCheckPosition = () => {
+    const WIDTH = 50
+    const HEIGHT = 37
+
+    const vect = generateRNGlocation(WIDTH, HEIGHT)
+    return isSolid( state.solids, vect )
+      ? recursevlyCheckPosition()
+      : vect
+  }
+
+  const gen = recursevlyCheckPosition()
+
+  player.element.x = gen.x * 16
+  player.element.y = gen.y * 16
+
   entitiesToUpdate.push(player)
 }
 
