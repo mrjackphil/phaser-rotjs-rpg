@@ -3,6 +3,7 @@ import Input from './input'
 import Player from './player'
 import MapGenerator from './map'
 import RendererText from './renderer'
+import StateManager from './state'
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -31,6 +32,7 @@ function preload() {
 // Scene functions
 function create() {
   const scene = this as Phaser.Scene
+  const state = new StateManager
   const input: InputSystem = new Input(scene)
   const renderer = new RendererText(scene)
   const player = new Player(input, scene, renderer)
