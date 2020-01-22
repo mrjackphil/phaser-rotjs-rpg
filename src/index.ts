@@ -43,8 +43,8 @@ function create() {
 
   const generateRNGlocation = (maxX: number, maxY: number): Movable => (
     {
-      x: RNG.getUniformInt(0, maxX),
-      y: RNG.getUniformInt(0, maxY)
+      x: RNG.getUniformInt(0, maxX - 1),
+      y: RNG.getUniformInt(0, maxY - 1)
     }
   )
 
