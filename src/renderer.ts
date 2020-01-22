@@ -1,14 +1,17 @@
-const FONT_SIZE = 16
+import StateManager from "./state"
+
 export default class RendererText implements Renderer {
   scene: Phaser.Scene
+  state: StateManager
 
-  constructor(scene: Phaser.Scene) {
+  constructor(scene: Phaser.Scene, state: StateManager) {
     this.scene = scene
+    this.state = state
   }
 
   public renderWall(x: number, y: number) {
     const { scene } = this
-    const fontSize = FONT_SIZE
+    const fontSize = this.state.gridSize
 
     const wall = scene?.add.bitmapText(
       x * fontSize,
@@ -29,7 +32,7 @@ export default class RendererText implements Renderer {
 
   public renderDoor(x: number, y: number) {
     const { scene } = this
-    const fontSize = FONT_SIZE
+    const fontSize = this.state.gridSize
 
     return scene?.add.bitmapText(x * fontSize, y * fontSize, "Moho", "D", fontSize)
   }

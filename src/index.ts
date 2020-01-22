@@ -35,7 +35,7 @@ function create() {
   const scene = this as Phaser.Scene
   const state = new StateManager
   const input: InputSystem = new Input(scene)
-  const renderer = new RendererText(scene)
+  const renderer = new RendererText(scene, state)
   const player = new Player(input, scene, renderer)
   const map = new MapGenerator(renderer, state)
 
