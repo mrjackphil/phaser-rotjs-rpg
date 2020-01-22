@@ -38,7 +38,7 @@ function create() {
   const input: InputSystem = new Input(scene)
   const renderer = new RendererText(scene, state)
   const collision = new CollisionManager(state)
-  const player = new Player(input, collision, renderer)
+  const player = new Player(input, collision, renderer, state)
   const map = new MapGenerator(renderer, state)
 
   map.generate()

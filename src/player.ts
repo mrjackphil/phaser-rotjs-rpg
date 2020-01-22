@@ -1,4 +1,5 @@
 import CollisionManager from "./collision"
+import StateManager from "./state"
 
 const PLAYER_MOVE_SPEED = 2
 
@@ -7,11 +8,13 @@ export default class Player implements Updated {
   input: InputSystem
   element: Movable
   collision: CollisionManager
+  state: StateManager
 
-  constructor(input: InputSystem, collision: CollisionManager, renderer: Renderer) {
+  constructor(input: InputSystem, collision: CollisionManager, renderer: Renderer, state: StateManager) {
     this.input = input
     this.speed = PLAYER_MOVE_SPEED
     this.collision = collision
+    this.state = state
     this.element = renderer.renderPlayer(0, 0)
   }
 
@@ -51,8 +54,8 @@ export default class Player implements Updated {
     const y = _y || this.element.y
 
     return {
-      x: Math.floor(x / 16),
-      y: Math.floor(y / 16)
+      x: Math.round(x / this.state.gridSize),
+      y: Math.round(y / this.state.gridSize)
     }
   }
 }
