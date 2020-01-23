@@ -2,7 +2,7 @@
   "license": "MIT",
   "scripts": {
     "start": "rollup -c -w",
-     "test": "mocha -r ts-node/register tests/**/*.spec.ts"
+     "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "dependencies": {
     "phaser": "^3.22.0",
