@@ -1,5 +1,6 @@
 import CollisionManager from "./collision"
 import StateManager from "./state"
+import { InputSystem, Renderer, Updated, Vector } from "./types"
 
 const PLAYER_MOVE_SPEED = 2
 

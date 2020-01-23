@@ -1,4 +1,5 @@
 import { RNG } from "rot-js"
+import { Vector } from "./types"
 
 export function generateRNGlocation(maxX: number, maxY: number): Vector {
   return {

@@ -1,3 +1,5 @@
+import { Vector } from "matter"
+
 export default class StateManager {
   solids: Vector[] = [];
   gridWidth: number = 50;

@@ -2,6 +2,7 @@ import * as ROT from 'rot-js'
 import Map from 'rot-js/lib/map/map'
 import Digger from 'rot-js/lib/map/digger'
 import StateManager from './state'
+import { Renderer } from './types'
 
 export default class MapGenerator {
   render: Renderer;

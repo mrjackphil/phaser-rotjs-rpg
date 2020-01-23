@@ -1,4 +1,5 @@
 import StateManager from "./state"
+import { Vector } from "matter"
 
 export default class CollisionManager {
   state: StateManager;

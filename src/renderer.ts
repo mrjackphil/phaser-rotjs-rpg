@@ -1,4 +1,5 @@
 import StateManager from "./state"
+import { Renderer } from "./types"
 
 export default class RendererText implements Renderer {
   scene: Phaser.Scene

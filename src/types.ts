@@ -1,20 +1,20 @@
-interface InputSystem {
+export interface InputSystem {
   isLeft: () => boolean;
   isRight: () => boolean;
   isDown: () => boolean;
   isUp: () => boolean;
 }
 
-interface Updated {
+export interface Updated {
   update: () => void
 }
 
-interface Vector {
+export interface Vector {
   x: number;
   y: number;
 }
 
-interface Renderer {
+export interface Renderer {
   renderWall: (x: number, y: number) => void;
   renderDoor: (x: number, y: number) => void;
   renderPlayer: (x: number, y: number) => Vector;

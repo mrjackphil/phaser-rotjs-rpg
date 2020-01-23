@@ -1,3 +1,5 @@
+import { InputSystem } from "./types"
+
 export default class Input implements InputSystem {
   cursors: Phaser.Types.Input.Keyboard.CursorKeys
   scene: Phaser.Scene

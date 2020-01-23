@@ -6,6 +6,7 @@ import RendererText from './renderer'
 import StateManager from './state'
 import { generateRNGlocation } from './utils'
 import CollisionManager from './collision'
+import { Updated, InputSystem } from './types'
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
