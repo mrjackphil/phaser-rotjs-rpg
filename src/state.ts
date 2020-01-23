@@ -1,5 +1,4 @@
-import { Vector } from "matter"
-import { State } from "./types"
+import { State, Vector } from "./types"
 
 export default class StateManager implements State {
   solids: Vector[] = [];
