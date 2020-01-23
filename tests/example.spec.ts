@@ -1,4 +1,3 @@
-import MapGenerator from '../src/map'
 import { expect } from 'chai'
 import 'mocha'
 
