@@ -25,7 +25,6 @@ export default class Player implements Updated {
 
   private move() {
     const { speed, input } = this
-
     const vect = { x: 0, y: 0 }
 
     if (input.isLeft()) {
