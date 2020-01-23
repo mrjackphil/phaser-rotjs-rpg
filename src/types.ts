@@ -10,10 +10,6 @@ export interface CollisionSystem {
 }
 
 export interface Grid {
-  // width: number;
-  // height: number;
-  // tileSize: number;
-  // gridSize: number;
   getColCount: () => number;
   getRowCount: () => number;
   getTileSize: () => number;
