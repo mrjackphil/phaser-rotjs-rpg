@@ -60,8 +60,6 @@ function create() {
 
   player.element.x = gen.x * grid.getTileSize()
   player.element.y = gen.y * grid.getTileSize()
-  console.log(player.element.x)
-  console.log(player.element.y)
 
   entitiesToUpdate.push(player)
 }
