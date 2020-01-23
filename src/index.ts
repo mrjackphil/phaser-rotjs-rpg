@@ -58,8 +58,10 @@ function create() {
 
   const gen = getRandomNotSolidPosition()
 
-  player.element.x = gen.x * grid.getColCount()
-  player.element.y = gen.y * grid.getRowCount()
+  player.element.x = gen.x * grid.getTileSize()
+  player.element.y = gen.y * grid.getTileSize()
+  console.log(player.element.x)
+  console.log(player.element.y)
 
   entitiesToUpdate.push(player)
 }
