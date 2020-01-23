@@ -9,7 +9,7 @@ interface Updated {
   update: () => void
 }
 
-interface Movable {
+interface Vector {
   x: number;
   y: number;
 }
@@ -17,5 +17,5 @@ interface Movable {
 interface Renderer {
   renderWall: (x: number, y: number) => void;
   renderDoor: (x: number, y: number) => void;
-  renderPlayer: (x: number, y: number) => Movable;
+  renderPlayer: (x: number, y: number) => Vector;
 }

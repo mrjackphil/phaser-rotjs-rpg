@@ -6,7 +6,7 @@ const PLAYER_MOVE_SPEED = 2
 export default class Player implements Updated {
   speed: number;
   input: InputSystem
-  element: Movable
+  element: Vector
   collision: CollisionManager
   state: StateManager
 

@@ -7,7 +7,7 @@ export default class CollisionManager {
     this.state = state
   }
 
-  public isSolid(s: Movable) {
+  public isSolid(s: Vector) {
     return this.state.solids.filter( e => e.x === s.x && e.y === s.y).length > 0
   }
 
