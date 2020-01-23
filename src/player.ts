@@ -1,5 +1,4 @@
-import CollisionManager from "./collision"
-import { InputSystem, Renderer, Updated, Vector, State } from "./types"
+import { InputSystem, Renderer, Updated, Vector, State, CollisionSystem } from "./types"
 
 const PLAYER_DEFAULT_MOVE_SPEED = 2
 
@@ -7,10 +6,10 @@ export default class Player implements Updated {
   speed: number;
   input: InputSystem
   element: Vector
-  collision: CollisionManager
+  collision: CollisionSystem
   state: State
 
-  constructor(input: InputSystem, collision: CollisionManager, renderer: Renderer, state: State) {
+  constructor(input: InputSystem, collision: CollisionSystem, renderer: Renderer, state: State) {
     this.input = input
     this.speed = PLAYER_DEFAULT_MOVE_SPEED
     this.collision = collision

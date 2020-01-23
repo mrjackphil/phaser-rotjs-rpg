@@ -1,4 +1,4 @@
-import Phaser, { Renderer } from 'phaser'
+import Phaser from 'phaser'
 import Input from './input'
 import Player from './player'
 import MapGenerator from './map'
@@ -6,7 +6,7 @@ import RendererText from './renderer'
 import StateManager from './state'
 import { generateRNGlocation } from './utils'
 import CollisionManager from './collision'
-import { Updated, InputSystem, State } from './types'
+import { Updated, InputSystem, State, CollisionSystem, Renderer } from './types'
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -37,8 +37,8 @@ function create() {
   const scene = this as Phaser.Scene
   const state: State = new StateManager
   const input: InputSystem = new Input(scene)
-  const renderer = new RendererText(scene, state)
-  const collision = new CollisionManager(state)
+  const renderer: Renderer = new RendererText(scene, state)
+  const collision: CollisionSystem = new CollisionManager(state)
   const player = new Player(input, collision, renderer, state)
   const map = new MapGenerator(renderer, state)
 

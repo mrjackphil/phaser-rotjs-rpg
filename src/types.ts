@@ -5,6 +5,10 @@ export interface InputSystem {
   isUp: () => boolean;
 }
 
+export interface CollisionSystem {
+  isSolid: (s: Vector) => boolean
+}
+
 export interface State {
   solids: Vector[];
   gridWidth: number;
