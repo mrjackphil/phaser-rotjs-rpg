@@ -10,12 +10,12 @@ export interface CollisionSystem {
 }
 
 export interface State {
-  solids: Vector[];
   gridWidth: number;
   gridHeight: number;
   gridSize: number;
 
   addSolid: (o: Vector) => void;
+  getSolids: () => Vector[];
 }
 
 export interface Updated {

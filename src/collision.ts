@@ -7,8 +7,8 @@ export default class CollisionManager implements CollisionSystem {
     this.state = state
   }
 
-  public isSolid(s: Vector) {
-    return this.state.solids.filter( e => e.x === s.x && e.y === s.y).length > 0
+  public isSolid(s: Vector): boolean {
+    return this.state.getSolids().filter( e => e.x === s.x && e.y === s.y).length > 0
   }
 
 }
