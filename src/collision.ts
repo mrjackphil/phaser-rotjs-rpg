@@ -1,10 +1,9 @@
-import StateManager from "./state"
-import { Vector } from "matter"
+import { State, Vector } from "./types"
 
 export default class CollisionManager {
-  state: StateManager;
+  state: State;
 
-  constructor(state: StateManager) {
+  constructor(state: State) {
     this.state = state
   }
 
