@@ -2,7 +2,7 @@ import CollisionManager from "./collision"
 import StateManager from "./state"
 import { InputSystem, Renderer, Updated, Vector } from "./types"
 
-const PLAYER_MOVE_SPEED = 2
+const PLAYER_DEFAULT_MOVE_SPEED = 2
 
 export default class Player implements Updated {
   speed: number;
@@ -13,7 +13,7 @@ export default class Player implements Updated {
 
   constructor(input: InputSystem, collision: CollisionManager, renderer: Renderer, state: StateManager) {
     this.input = input
-    this.speed = PLAYER_MOVE_SPEED
+    this.speed = PLAYER_DEFAULT_MOVE_SPEED
     this.collision = collision
     this.state = state
     this.element = renderer.renderPlayer(0, 0)
