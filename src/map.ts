@@ -1,21 +1,23 @@
 import * as ROT from 'rot-js'
 import Map from 'rot-js/lib/map/map'
 import Digger from 'rot-js/lib/map/digger'
-import { Renderer, State } from './types'
+import { RendererSystem, StateSystem, GridSystem } from './types'
 
 export default class MapGenerator {
-  render: Renderer;
-  map: Map;
-  state: State
+  private render: RendererSystem;
+  private map: Map;
+  private grid: GridSystem
+  private state: StateSystem
 
-  constructor(render: Renderer, state: State) {
+  constructor(render: RendererSystem, state: StateSystem, grid: GridSystem) {
     this.render = render
-    this.state = state
+    this.grid = grid
+    this.state= state
   }
 
   public generate() {
-    const width = this.state.gridWidth
-    const height = this.state.gridHeight
+    const width = this.grid.getColCount()
+    const height = this.grid.getRowCount()
 
     this.map = new ROT.Map.Digger(width, height)
     this.map.create(this.mapgenCallback.bind(this))

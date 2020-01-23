@@ -6,7 +6,8 @@ import RendererText from './renderer'
 import StateManager from './state'
 import { generateRNGlocation } from './utils'
 import CollisionManager from './collision'
-import { Updated, InputSystem, State, CollisionSystem, Renderer } from './types'
+import { Updated, InputSystem, StateSystem, CollisionSystem, RendererSystem, GridSystem } from './types'
+import GridManager from './grid'
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -35,18 +36,19 @@ function preload() {
 // Scene functions
 function create() {
   const scene = this as Phaser.Scene
-  const state: State = new StateManager
+  const grid: GridSystem = new GridManager(50, 37, 16)
+  const state: StateSystem = new StateManager()
   const input: InputSystem = new Input(scene)
-  const renderer: Renderer = new RendererText(scene, state)
+  const renderer: RendererSystem = new RendererText(scene, grid)
   const collision: CollisionSystem = new CollisionManager(state)
-  const player = new Player(input, collision, renderer, state)
-  const map = new MapGenerator(renderer, state)
+  const player = new Player(input, collision, renderer, grid)
+  const map = new MapGenerator(renderer, state, grid)
 
   map.generate()
 
   const getRandomNotSolidPosition = () => {
-    const width = state.gridWidth
-    const height = state.gridHeight
+    const width = grid.getColCount()
+    const height = grid.getRowCount()
 
     const vect = generateRNGlocation(width, height)
     return collision.isSolid( vect )
@@ -56,8 +58,8 @@ function create() {
 
   const gen = getRandomNotSolidPosition()
 
-  player.element.x = gen.x * state.gridSize
-  player.element.y = gen.y * state.gridSize
+  player.element.x = gen.x * grid.getColCount()
+  player.element.y = gen.y * grid.getRowCount()
 
   entitiesToUpdate.push(player)
 }

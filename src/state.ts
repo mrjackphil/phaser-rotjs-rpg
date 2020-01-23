@@ -1,6 +1,6 @@
-import { State, Vector } from "./types"
+import { StateSystem, Vector } from "./types"
 
-export default class StateManager implements State {
+export default class StateManager implements StateSystem {
   private solids: Vector[] = [];
   gridWidth: number = 50;
   gridHeight: number = 37;

@@ -1,17 +1,17 @@
-import { Renderer, State } from "./types"
+import { RendererSystem, GridSystem } from "./types"
 
-export default class RendererText implements Renderer {
+export default class RendererText implements RendererSystem {
   scene: Phaser.Scene
-  state: State
+  grid: GridSystem
 
-  constructor(scene: Phaser.Scene, state: State) {
+  constructor(scene: Phaser.Scene, grid: GridSystem) {
     this.scene = scene
-    this.state = state
+    this.grid = grid
   }
 
   public renderWall(x: number, y: number) {
     const { scene } = this
-    const fontSize = this.state.gridSize
+    const fontSize = this.grid.getTileSize()
 
     const wall = scene?.add.bitmapText(
       x * fontSize,
@@ -32,7 +32,7 @@ export default class RendererText implements Renderer {
 
   public renderDoor(x: number, y: number) {
     const { scene } = this
-    const fontSize = this.state.gridSize
+    const fontSize = this.grid.getTileSize()
 
     return scene?.add.bitmapText(x * fontSize, y * fontSize, "Moho", "D", fontSize)
   }
