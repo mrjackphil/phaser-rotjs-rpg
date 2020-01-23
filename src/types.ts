@@ -5,6 +5,15 @@ export interface InputSystem {
   isUp: () => boolean;
 }
 
+export interface State {
+  solids: Vector[];
+  gridWidth: number;
+  gridHeight: number;
+  gridSize: number;
+
+  addSolid: (o: Vector) => void;
+}
+
 export interface Updated {
   update: () => void
 }

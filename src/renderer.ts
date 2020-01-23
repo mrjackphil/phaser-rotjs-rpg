@@ -1,11 +1,10 @@
-import StateManager from "./state"
-import { Renderer } from "./types"
+import { Renderer, State } from "./types"
 
 export default class RendererText implements Renderer {
   scene: Phaser.Scene
-  state: StateManager
+  state: State
 
-  constructor(scene: Phaser.Scene, state: StateManager) {
+  constructor(scene: Phaser.Scene, state: State) {
     this.scene = scene
     this.state = state
   }

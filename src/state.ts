@@ -1,6 +1,7 @@
 import { Vector } from "matter"
+import { State } from "./types"
 
-export default class StateManager {
+export default class StateManager implements State {
   solids: Vector[] = [];
   gridWidth: number = 50;
   gridHeight: number = 37;

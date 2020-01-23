@@ -6,7 +6,7 @@ import RendererText from './renderer'
 import StateManager from './state'
 import { generateRNGlocation } from './utils'
 import CollisionManager from './collision'
-import { Updated, InputSystem } from './types'
+import { Updated, InputSystem, State } from './types'
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -35,7 +35,7 @@ function preload() {
 // Scene functions
 function create() {
   const scene = this as Phaser.Scene
-  const state = new StateManager
+  const state: State = new StateManager
   const input: InputSystem = new Input(scene)
   const renderer = new RendererText(scene, state)
   const collision = new CollisionManager(state)

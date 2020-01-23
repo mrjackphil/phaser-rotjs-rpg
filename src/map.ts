@@ -1,15 +1,14 @@
 import * as ROT from 'rot-js'
 import Map from 'rot-js/lib/map/map'
 import Digger from 'rot-js/lib/map/digger'
-import StateManager from './state'
-import { Renderer } from './types'
+import { Renderer, State } from './types'
 
 export default class MapGenerator {
   render: Renderer;
   map: Map;
-  state: StateManager
+  state: State
 
-  constructor(render: Renderer, state: StateManager) {
+  constructor(render: Renderer, state: State) {
     this.render = render
     this.state = state
   }
