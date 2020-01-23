@@ -9,16 +9,22 @@ export interface CollisionSystem {
   isSolid: (s: Vector) => boolean
 }
 
-export interface Grid {
+export interface GridSystem {
   getColCount: () => number;
   getRowCount: () => number;
   getTileSize: () => number;
   getCellCount: () => number;
 }
 
-export interface State {
+export interface StateSystem {
   addSolid: (o: Vector) => void;
   getSolids: () => Vector[];
+}
+
+export interface RendererSystem {
+  renderWall: (x: number, y: number) => void;
+  renderDoor: (x: number, y: number) => void;
+  renderPlayer: (x: number, y: number) => Vector;
 }
 
 export interface Updated {
@@ -28,10 +34,4 @@ export interface Updated {
 export interface Vector {
   x: number;
   y: number;
-}
-
-export interface Renderer {
-  renderWall: (x: number, y: number) => void;
-  renderDoor: (x: number, y: number) => void;
-  renderPlayer: (x: number, y: number) => Vector;
 }
