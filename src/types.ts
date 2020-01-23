@@ -9,11 +9,18 @@ export interface CollisionSystem {
   isSolid: (s: Vector) => boolean
 }
 
-export interface State {
-  gridWidth: number;
-  gridHeight: number;
-  gridSize: number;
+export interface Grid {
+  // width: number;
+  // height: number;
+  // tileSize: number;
+  // gridSize: number;
+  getColCount: () => number;
+  getRowCount: () => number;
+  getTileSize: () => number;
+  getCellCount: () => number;
+}
 
+export interface State {
   addSolid: (o: Vector) => void;
   getSolids: () => Vector[];
 }
