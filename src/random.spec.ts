@@ -18,7 +18,8 @@ describe('<Unstable>Generate random data', () => {
     }
 
     const collision: CollisionSystem = {
-      isSolid: ({ value }) => !(value.x === 4 && value.y === 4)
+      isSolid: ({ value }) => !(value.x === 4 && value.y === 4),
+      isEmpty: () => false
     }
 
     const result = getRandomNotSolidPosition(grid, collision)
@@ -34,7 +35,8 @@ describe('<Unstable>Generate random data', () => {
     }
 
     const collision: CollisionSystem = {
-      isSolid: () => false
+      isSolid: () => false,
+      isEmpty: () => false
     }
 
     const result = getRandomNotSolidPosition(grid, collision)
@@ -50,7 +52,8 @@ describe('<Unstable>Generate random data', () => {
     }
 
     const collision: CollisionSystem = {
-      isSolid: ({ value }) => !(value.x === 5 && value.y === 5)
+      isSolid: ({ value }) => !(value.x === 5 && value.y === 5),
+      isEmpty: () => false
     }
 
     expect(() => getRandomNotSolidPosition(grid, collision)).to.throw()
