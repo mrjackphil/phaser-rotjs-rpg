@@ -11,7 +11,7 @@ const inputMock: InputSystem = {
 }
 const collisionMock: CollisionSystem = {
   isSolid: () => false,
-  isEmpty: () => false
+  isEmpty: () => true
 }
 const renderMock: RendererSystem = {
   renderDoor: () => false,

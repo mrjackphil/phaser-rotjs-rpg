@@ -31,7 +31,7 @@ export default class Player implements Updated {
     const nextY = element.y + vect.value.y
     const nextGridToCollide = pixelToGridVector(grid, createPixelVectorType({ x: nextX, y: nextY }))
 
-    if (!collision.isSolid(nextGridToCollide)) {
+    if (collision.isEmpty(nextGridToCollide)) {
       element.x+=vect.value.x
       element.y+=vect.value.y
     }
