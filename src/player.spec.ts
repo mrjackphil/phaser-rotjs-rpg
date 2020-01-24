@@ -27,6 +27,7 @@ const gridMock: GridSystem = {
 describe('Player Controller', () => {
   it('Has update function', () => {
     const pl = new Player(inputMock, collisionMock, renderMock, gridMock)
+
     expect(pl.update).to.be.a('function')
   })
 
@@ -40,6 +41,7 @@ describe('Player Controller', () => {
 
     pl.speed = 1
     pl.update()
+
     expect(pl.element.x).to.be.eq(-1)
   })
 })
