@@ -11,11 +11,11 @@ describe('Generate util functions', () => {
   })
 
   it('convert vector grid -> precise pixel', () => {
-    const vector = { x: 1, y: 1 }
+    const vector = { kind: 'grid', value: { x: 1, y: 1 } } as GridVector
     gridMock.getTileSize = () => 16
 
     const translated = Util.gridToPixelVector(gridMock, vector)
-    expect(translated).to.be.deep.eq({ x: 16, y: 16 })
+    expect(translated).to.be.deep.eq({ kind: 'pixel', value: { x: 16, y: 16 } })
   })
 
   it('convert vector precise pixel -> grid', () => {

@@ -8,9 +8,10 @@ export function generateRNGlocation(maxX: number, maxY: number): Vector {
   }
 }
 
-export function gridToPixelVector(grid: GridSystem, vect: Vector) {
+export function gridToPixelVector(grid: GridSystem, { value: vect }: GridVector): PixelVector {
   const size = grid.getTileSize()
-  return { x: vect.x * size, y: vect.y * size }
+  const value = { x: vect.x * size, y: vect.y * size }
+  return { kind: 'pixel', value }
 }
 
 export function pixelToGridVector(grid: GridSystem, { value: vect }: PixelVector): GridVector {
