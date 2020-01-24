@@ -10,7 +10,8 @@ const inputMock: InputSystem = {
   isUp: () => false,
 }
 const collisionMock: CollisionSystem = {
-  isSolid: () => false
+  isSolid: () => false,
+  isEmpty: () => false
 }
 const renderMock: RendererSystem = {
   renderDoor: () => false,

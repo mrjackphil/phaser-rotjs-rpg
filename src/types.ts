@@ -6,7 +6,8 @@ export interface InputSystem {
 }
 
 export interface CollisionSystem {
-  isSolid: (s: GridVector) => boolean
+  isSolid: (s: GridVector) => boolean;
+  isEmpty: (s: GridVector) => boolean;
 }
 
 export interface GridSystem {

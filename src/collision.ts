@@ -1,10 +1,14 @@
-import { StateSystem, Vector, CollisionSystem, GridVector } from "./types"
+import { StateSystem, Vector, CollisionSystem, GridVector, GridSystem } from "./types"
 
 export default class CollisionManager implements CollisionSystem {
   private state: StateSystem;
 
   constructor(state: StateSystem) {
     this.state = state
+  }
+
+  public isEmpty(s: GridVector): boolean {
+    return !this.isSolid(s)
   }
 
   public isSolid(s: GridVector): boolean {

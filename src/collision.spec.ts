@@ -5,7 +5,7 @@ import StateManager from './state'
 import { GridVector } from './types'
 
 describe('Test collision manager', () => {
-  it('isSolid method returns array', () => {
+  it('isSolid method returns boolean', () => {
     const state = new StateManager()
     const collision = new CollisionManager(state)
     const vector = { kind: 'grid', value: { x: 0, y: 0 } } as GridVector
@@ -14,4 +14,15 @@ describe('Test collision manager', () => {
 
     expect(res).to.be.a('boolean')
   })
+
+  it('isEmpty method returns boolean', () => {
+    const state = new StateManager()
+    const collision = new CollisionManager(state)
+    const vector = { kind: 'grid', value: { x: 0, y: 0 } } as GridVector
+
+    const res = collision.isEmpty(vector)
+
+    expect(res).to.be.a('boolean')
+  })
+
 })
