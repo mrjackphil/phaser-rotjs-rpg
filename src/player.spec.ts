@@ -19,14 +19,31 @@ const renderMock: RendererSystem = {
 }
 const gridMock: GridSystem = {
   getCellCount: () => 0,
-  getTileSize: () => 0,
-  getRowCount: () => 0,
-  getColCount: () => 0
+  getTileSize: () => 16,
+  getRowCount: () => 5,
+  getColCount: () => 5
 }
 
 describe('Player Controller', () => {
   it('Has update function', () => {
     const pl = new Player(inputMock, collisionMock, renderMock, gridMock)
     expect(pl.update).to.be.a('function')
+  })
+  it('Moves left', () => {
+    const inputLeftPressedMock = Object.assign({},
+      inputMock,
+      { isLeft: () => true }
+    )
+
+    const pl = new Player(
+      inputLeftPressedMock,
+      collisionMock,
+      renderMock,
+      gridMock
+    )
+
+    pl.speed = 1
+    pl.update()
+    expect(pl.element.x).to.be.eq(-1)
   })
 })
