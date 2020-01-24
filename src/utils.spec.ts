@@ -5,11 +5,6 @@ import { gridMock } from './mocks'
 import { PixelVector, GridVector } from './types'
 
 describe('Generate util functions', () => {
-  it(`${Util.generateRNGlocation.name} return a valid vector with zeros`, () => {
-    const result = Util.generateRNGlocation(0, 0)
-    expect(result).to.deep.equal({ x: 0, y: 0 })
-  })
-
   it('convert vector grid -> precise pixel', () => {
     const vector = { kind: 'grid', value: { x: 1, y: 1 } } as GridVector
     gridMock.getTileSize = () => 16
