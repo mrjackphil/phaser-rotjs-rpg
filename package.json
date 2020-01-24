@@ -3,7 +3,7 @@
   "scripts": {
     "start": "rollup -c -w",
      "test": "mocha -r ts-node/register src/**/*.spec.ts",
-     "test:watch": "mocha --watch -r ts-node/register src/**/*.spec.ts"
+     "test:watch": "mocha --watch --watch-files src -r ts-node/register src/**/*.spec.ts"
   },
   "dependencies": {
     "phaser": "^3.22.0",
