@@ -1,6 +1,6 @@
 import { InputSystem, RendererSystem, Updated, Vector, CollisionSystem, GridSystem } from "./types"
 import { pixelToGridVector } from "./utils"
-import { createPixelVector } from "./types_util"
+import { createPixelVectorType } from "./types_util"
 
 const PLAYER_DEFAULT_MOVE_SPEED = 2
 
@@ -25,7 +25,7 @@ export default class Player implements Updated {
 
   private move() {
     const { speed, input } = this
-    const vec = createPixelVector({ x: 0, y: 0 })
+    const vec = createPixelVectorType({ x: 0, y: 0 })
     const vect = vec.value
 
     if (input.isLeft()) {
@@ -42,7 +42,7 @@ export default class Player implements Updated {
 
     const nextX = this.element.x + vect.x
     const nextY = this.element.y + vect.y
-    const nextGridToCollide = pixelToGridVector(this.grid, createPixelVector({ x: nextX, y: nextY }))
+    const nextGridToCollide = pixelToGridVector(this.grid, createPixelVectorType({ x: nextX, y: nextY }))
 
     if (!this.collision.isSolid(nextGridToCollide)) {
       this.element.x+=vect.x
