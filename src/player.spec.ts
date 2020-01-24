@@ -29,14 +29,10 @@ describe('Player Controller', () => {
     const pl = new Player(inputMock, collisionMock, renderMock, gridMock)
     expect(pl.update).to.be.a('function')
   })
-  it('Moves left', () => {
-    const inputLeftPressedMock = Object.assign({},
-      inputMock,
-      { isLeft: () => true }
-    )
 
+  it('Moves left', () => {
     const pl = new Player(
-      inputLeftPressedMock,
+      { ...inputMock, isLeft: () => true },
       collisionMock,
       renderMock,
       gridMock
