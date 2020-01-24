@@ -35,3 +35,15 @@ export interface Vector {
   x: number;
   y: number;
 }
+
+export interface GridVector {
+  kind: 'grid',
+  value: Vector
+}
+
+export interface PixelVector {
+  kind: 'pixel',
+  value: Vector
+}
+
+export type VectorAlgebraicType = PixelVector | GridVector
