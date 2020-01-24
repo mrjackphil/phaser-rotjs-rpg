@@ -1,5 +1,5 @@
 import { RNG } from "rot-js"
-import { Vector } from "./types"
+import { Vector, GridSystem } from "./types"
 
 export function generateRNGlocation(maxX: number, maxY: number): Vector {
   return {
@@ -7,3 +7,14 @@ export function generateRNGlocation(maxX: number, maxY: number): Vector {
     y: RNG.getUniformInt(0, maxY)
   }
 }
+
+export function gridToPixelVector(grid: GridSystem, vect: Vector) {
+  const size = grid.getTileSize()
+  return { x: vect.x * size, y: vect.y * size }
+}
+
+export function pixelToGridVector(grid: GridSystem, vect: Vector) {
+  const size = grid.getTileSize()
+  return { x: vect.x / size, y: vect.y / size }
+}
+
