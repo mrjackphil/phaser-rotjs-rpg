@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import 'mocha'
 import * as Util from './utils'
 import { gridMock } from './mocks'
+import { PixelVector, GridVector } from './types'
 
 describe('Generate util functions', () => {
   it(`${Util.generateRNGlocation.name} return a valid vector with zeros`, () => {
@@ -18,18 +19,18 @@ describe('Generate util functions', () => {
   })
 
   it('convert vector precise pixel -> grid', () => {
-    const vector = { x: 16, y: 16 }
+    const vector = { kind: 'pixel', value: { x: 16, y: 16 } } as PixelVector
     gridMock.getTileSize = () => 16
 
     const translated = Util.pixelToGridVector(gridMock, vector)
-    expect(translated).to.be.deep.eq({ x: 1, y: 1 })
+    expect(translated).to.be.deep.eq({ kind: 'grid', value: { x: 1, y: 1 } } )
   })
 
   it('convert vector not precise pixel -> grid', () => {
-    const vector = { x: 17, y: 17 }
+    const vector = { kind: 'pixel', value: { x: 17, y: 17 } } as PixelVector
     gridMock.getTileSize = () => 16
 
     const translated = Util.pixelToGridVector(gridMock, vector)
-    expect(translated).to.be.deep.eq({ x: 1, y: 1 })
+    expect(translated).to.be.deep.eq({ kind: 'grid', value: { x: 1, y: 1 } } )
   })
 })

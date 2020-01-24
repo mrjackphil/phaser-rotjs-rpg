@@ -1,4 +1,4 @@
-import { StateSystem, Vector, CollisionSystem } from "./types"
+import { StateSystem, Vector, CollisionSystem, GridVector } from "./types"
 
 export default class CollisionManager implements CollisionSystem {
   private state: StateSystem;
@@ -7,8 +7,8 @@ export default class CollisionManager implements CollisionSystem {
     this.state = state
   }
 
-  public isSolid(s: Vector): boolean {
-    return this.state.getSolids().filter( e => e.x === s.x && e.y === s.y).length > 0
+  public isSolid(s: GridVector): boolean {
+    return this.state.getSolids().filter( e => e.x === s.value.x && e.y === s.value.y).length > 0
   }
 
 }

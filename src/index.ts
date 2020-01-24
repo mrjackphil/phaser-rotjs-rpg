@@ -6,7 +6,7 @@ import RendererText from './renderer'
 import StateManager from './state'
 import { generateRNGlocation } from './utils'
 import CollisionManager from './collision'
-import { Updated, InputSystem, StateSystem, CollisionSystem, RendererSystem, GridSystem } from './types'
+import { Updated, InputSystem, StateSystem, CollisionSystem, RendererSystem, GridSystem, PixelVector, GridVector } from './types'
 import GridManager from './grid'
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -46,11 +46,11 @@ function create() {
 
   map.generate()
 
-  const getRandomNotSolidPosition = () => {
+  const getRandomNotSolidPosition = (): GridVector => {
     const width = grid.getColCount()
     const height = grid.getRowCount()
 
-    const vect = generateRNGlocation(width, height)
+    const vect = { kind: 'grid', value: generateRNGlocation(width, height) } as GridVector
     return collision.isSolid( vect )
       ? getRandomNotSolidPosition()
       : vect
@@ -58,8 +58,8 @@ function create() {
 
   const gen = getRandomNotSolidPosition()
 
-  player.element.x = gen.x * grid.getTileSize()
-  player.element.y = gen.y * grid.getTileSize()
+  player.element.x = gen.value.x * grid.getTileSize()
+  player.element.y = gen.value.y * grid.getTileSize()
 
   entitiesToUpdate.push(player)
 }
