@@ -4,7 +4,7 @@ import Player from './player'
 import MapGenerator from './map'
 import RendererText from './renderer'
 import StateManager from './state'
-import { generateRNGlocation } from './utils'
+import { getRandomNotSolidPosition } from './utils'
 import CollisionManager from './collision'
 import { Updated, InputSystem, StateSystem, CollisionSystem, RendererSystem, GridSystem, PixelVector, GridVector } from './types'
 import GridManager from './grid'
@@ -46,17 +46,7 @@ function create() {
 
   map.generate()
 
-  const getRandomNotSolidPosition = (): GridVector => {
-    const width = grid.getColCount()
-    const height = grid.getRowCount()
-
-    const vect = { kind: 'grid', value: generateRNGlocation(width, height) } as GridVector
-    return collision.isSolid( vect )
-      ? getRandomNotSolidPosition()
-      : vect
-  }
-
-  const gen = getRandomNotSolidPosition()
+  const gen = getRandomNotSolidPosition(grid, collision)
 
   player.element.x = gen.value.x * grid.getTileSize()
   player.element.y = gen.value.y * grid.getTileSize()
