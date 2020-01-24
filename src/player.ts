@@ -1,4 +1,5 @@
 import { InputSystem, RendererSystem, Updated, Vector, CollisionSystem, GridSystem } from "./types"
+import { pixelToGridVector } from "./utils"
 
 const PLAYER_DEFAULT_MOVE_SPEED = 2
 
@@ -37,19 +38,13 @@ export default class Player implements Updated {
         vect.y = speed;
     }
 
-    if (!this.collision.isSolid(this.getCurrentGridPosition(this.element.x + vect.x, this.element.y + vect.y))) {
+    const nextX = this.element.x + vect.x
+    const nextY = this.element.y + vect.y
+    const nextGridToCollide = pixelToGridVector(this.grid, { x: nextX, y: nextY })
+
+    if (!this.collision.isSolid(nextGridToCollide)) {
       this.element.x+=vect.x
       this.element.y+=vect.y
-    }
-  }
-
-  private getCurrentGridPosition(_x?: number, _y?: number) {
-    const x = _x || this.element.x
-    const y = _y || this.element.y
-
-    return {
-      x: Math.round(x / this.grid.getTileSize()),
-      y: Math.round(y / this.grid.getTileSize())
     }
   }
 }
