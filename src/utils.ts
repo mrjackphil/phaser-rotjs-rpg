@@ -15,6 +15,6 @@ export function gridToPixelVector(grid: GridSystem, vect: Vector) {
 
 export function pixelToGridVector(grid: GridSystem, vect: Vector) {
   const size = grid.getTileSize()
-  return { x: vect.x / size, y: vect.y / size }
+  return { x: Math.round(vect.x / size), y: Math.round(vect.y / size) }
 }
 

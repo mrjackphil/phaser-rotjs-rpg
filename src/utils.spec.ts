@@ -9,7 +9,7 @@ describe('Generate util functions', () => {
     expect(result).to.deep.equal({ x: 0, y: 0 })
   })
 
-  it('translate grid vector into pixel vector', () => {
+  it('transform vector grid -> precise pixel', () => {
     const vector = { x: 1, y: 1 }
     gridMock.getTileSize = () => 16
 
@@ -17,8 +17,16 @@ describe('Generate util functions', () => {
     expect(translated).to.be.deep.eq({ x: 16, y: 16 })
   })
 
-  it('translate grid vector into pixel vector', () => {
+  it('transform vector precise pixel -> grid', () => {
     const vector = { x: 16, y: 16 }
+    gridMock.getTileSize = () => 16
+
+    const translated = Util.pixelToGridVector(gridMock, vector)
+    expect(translated).to.be.deep.eq({ x: 1, y: 1 })
+  })
+
+  it('transform vector not precise pixel -> grid', () => {
+    const vector = { x: 17, y: 17 }
     gridMock.getTileSize = () => 16
 
     const translated = Util.pixelToGridVector(gridMock, vector)
