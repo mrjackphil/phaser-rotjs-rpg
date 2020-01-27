@@ -41,7 +41,7 @@ describe('Player Controller', () => {
       gridMock
     )
 
-    pl.moveToCell({ x: 1, y: 1 })
+    pl.moveToCell(1, 1)
     expect(pl.element).to.contain({ x: 16, y: 16 })
   })
 

@@ -23,10 +23,13 @@ export default class Player implements Updated {
     this.move()
   }
 
-  public moveToCell(v: Vector) {
-    const gridPos = createGridVectorType(v)
+  public moveToCell(col: number, row: number) {
+    const gridPos = createGridVectorType({ x: col, y: row })
     const post = gridToPixelVector(this.grid, gridPos)
-    this.element = { ...this.element, ...post.value }
+
+    this.element.x = post.value.x
+    this.element.y = post.value.y
+  }
   }
 
   private move() {
