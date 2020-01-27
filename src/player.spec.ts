@@ -45,4 +45,36 @@ describe('Player Controller', () => {
 
     expect(pl.element.x).to.be.eq(-1)
   })
+
+  it('Moves up/left but left blocked', () => {
+    const pl = new Player(
+      { ...inputMock, isLeft: () => true, isUp: () => true },
+      { ...collisionMock, isEmpty: ({value}) => value.x !== -1 },
+      renderMock,
+      gridMock
+    )
+
+    pl.speed = 2
+    pl.update()
+
+    expect(pl.element.x).to.be.eq(0)
+    expect(pl.element.y).to.be.eq(-16)
+  })
+
+  it('Moves up/left but up blocked', () => {
+    const pl = new Player(
+      { ...inputMock, isRight: () => true, isUp: () => true },
+      { ...collisionMock, isEmpty: ({value}) => value.y !== -1 },
+      renderMock,
+      gridMock
+    )
+
+    pl.element.x = 16
+    pl.element.y = 16
+    pl.speed = 2
+    pl.update()
+
+    expect(pl.element.x).to.be.eq(2)
+    expect(pl.element.y).to.be.eq(0)
+  })
 })

@@ -1,4 +1,4 @@
-import { InputSystem, RendererSystem, Updated, Vector, CollisionSystem, GridSystem, PixelVector } from "./types"
+import { InputSystem, RendererSystem, Updated, Vector, CollisionSystem, GridSystem, PixelVector, GridVector } from "./types"
 import { pixelToGridVector } from "./utils"
 import { createPixelVectorType } from "./types_util"
 
@@ -31,15 +31,22 @@ export default class Player implements Updated {
     const nextY = element.y + vect.value.y
     const nextGridToCollide = pixelToGridVector(grid, createPixelVectorType({ x: nextX, y: nextY }))
 
+    const valueXToZero = (g: GridVector) => ({ ...g, value: { ...g.value, x: 0 }})
+    const valueYToZero = (g: GridVector) => ({ ...g, value: { ...g.value, y: 0 }})
+
     if (collision.isEmpty(nextGridToCollide)) {
-      element.x+=vect.value.x
-      element.y+=vect.value.y
+      element.x = nextX
+      element.y = nextY
+    } else if (collision.isEmpty(valueXToZero(nextGridToCollide))) {
+      element.y = nextY
+    } else if (collision.isEmpty(valueYToZero(nextGridToCollide))) {
+      element.x = nextX
     }
   }
 
   private getMovementVector(): PixelVector {
     const { speed, input } = this
-    const vect = createPixelVectorType({ x: 0, y: 0})
+    const vect = createPixelVectorType({ x: 0, y: 0 })
 
     if (input.isLeft()) {
         vect.value.x = -speed;
