@@ -1,3 +1,7 @@
+export interface PlayerControllerSystem extends Updated {
+  moveToCell: (col: number, row: number) => void
+}
+
 export interface InputSystem {
   isLeft: () => boolean;
   isRight: () => boolean;

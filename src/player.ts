@@ -1,10 +1,10 @@
-import { InputSystem, RendererSystem, Updated, Vector, CollisionSystem, GridSystem, PixelVector } from "./types"
+import { InputSystem, RendererSystem, Vector, CollisionSystem, GridSystem, PixelVector, PlayerControllerSystem } from "./types"
 import { pixelToGridVector, gridToPixelVector } from "./utils"
 import { createPixelVectorType, createGridVectorType } from "./types_util"
 
 const PLAYER_DEFAULT_MOVE_SPEED = 2
 
-export default class Player implements Updated {
+export default class Player implements PlayerControllerSystem {
   speed: number;
   input: InputSystem
   element: Vector

@@ -6,7 +6,7 @@ import RendererText from './renderer'
 import StateManager from './state'
 import { getRandomNotSolidPosition } from './random'
 import CollisionManager from './collision'
-import { Updated, InputSystem, StateSystem, CollisionSystem, RendererSystem, GridSystem, PixelVector, GridVector } from './types'
+import { Updated, InputSystem, StateSystem, CollisionSystem, RendererSystem, GridSystem, PixelVector, GridVector, PlayerControllerSystem } from './types'
 import GridManager from './grid'
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -41,15 +41,16 @@ function create() {
   const input: InputSystem = new Input(scene)
   const renderer: RendererSystem = new RendererText(scene, grid)
   const collision: CollisionSystem = new CollisionManager(state)
-  const player = new Player(input, collision, renderer, grid)
+  const player: PlayerControllerSystem = new Player(input, collision, renderer, grid)
   const map = new MapGenerator(renderer, state, grid)
 
   map.generate()
 
-  const gen = getRandomNotSolidPosition(grid, collision)
-
-  player.element.x = gen.value.x * grid.getTileSize()
-  player.element.y = gen.value.y * grid.getTileSize()
+  const randomEmptyCellPosition = getRandomNotSolidPosition(grid, collision)
+  player.moveToCell(
+    randomEmptyCellPosition.value.x,
+    randomEmptyCellPosition.value.y
+  )
 
   entitiesToUpdate.push(player)
 }
