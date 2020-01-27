@@ -1,5 +1,4 @@
 // GameObjects
-
 export interface GameObjectSystem {
   addObject: (o: GameObjectEntity) => ID["id"];
   getObjects: () => (GameObjectEntity & ID)[];
@@ -7,9 +6,8 @@ export interface GameObjectSystem {
   removeObject: (id: number) => void;
 }
 
-export interface GameObjectEntity extends Partial<GameObjectParameters>{
-  position: Vector;
-}
+export interface GameObjectEntity
+  extends Vector, Partial<GameObjectParameters> {}
 
 export interface GameObjectParameters {
   isSolid: boolean;

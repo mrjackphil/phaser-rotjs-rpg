@@ -6,7 +6,7 @@ import { GameObjectEntity } from './types'
 describe('Game object methods', () => {
   it('Add gameobject returns id', () => {
     const gameobject = new GameObjectManager()
-    const object: GameObjectEntity = { position: { x: 0, y: 0 } }
+    const object: GameObjectEntity = { x: 0, y: 0 }
 
     const id = gameobject.addObject(object)
     expect(id).to.be.a('number')
@@ -14,7 +14,7 @@ describe('Game object methods', () => {
 
   it('Add several object will increase the id number', () => {
     const gameobject = new GameObjectManager()
-    const object: GameObjectEntity = { position: { x: 0, y: 0 } }
+    const object: GameObjectEntity = { x: 0, y: 0 }
 
     const id1 = gameobject.addObject(object)
     const id2 = gameobject.addObject(object)
@@ -25,7 +25,7 @@ describe('Game object methods', () => {
 
   it('Add game object', () => {
     const gameobject = new GameObjectManager()
-    const object: GameObjectEntity = { position: { x: 0, y: 0 } }
+    const object: GameObjectEntity = { x: 0, y: 0 }
 
     gameobject.addObject(object)
 
@@ -34,7 +34,7 @@ describe('Game object methods', () => {
 
   it('Remove gameobject', () => {
     const gameobject = new GameObjectManager()
-    const object: GameObjectEntity = { position: { x: 0, y: 0 } }
+    const object: GameObjectEntity = { x: 0, y: 0 }
 
     gameobject.addObject(object)
     const willRemove = gameobject.addObject(object)
@@ -46,7 +46,7 @@ describe('Game object methods', () => {
 
   it('Unique ids for each added gameobject', () => {
     const gameobject = new GameObjectManager()
-    const object: GameObjectEntity = { position: { x: 0, y: 0 } }
+    const object: GameObjectEntity = { x: 0, y: 0 }
 
     gameobject.addObject(object)
     gameobject.addObject(object)
@@ -60,8 +60,8 @@ describe('Game object methods', () => {
 
   it('Get solid objects', () => {
     const gameobject = new GameObjectManager()
-    const solidObj: GameObjectEntity = { position: { x: 0, y: 0 }, isSolid: true }
-    const nonSolidObj: GameObjectEntity = { position: { x: 0, y: 0 }, isSolid: false }
+    const solidObj: GameObjectEntity = { x: 0, y: 0, isSolid: true }
+    const nonSolidObj: GameObjectEntity = { x: 0, y: 0, isSolid: false }
     gameobject.addObject(solidObj)
     gameobject.addObject(solidObj)
     gameobject.addObject(nonSolidObj)
