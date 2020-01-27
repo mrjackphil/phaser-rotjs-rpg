@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
 import CollisionManager from './collision'
-import StateManager from './state'
+import StateManager from './solids'
 import { GridVector } from './types'
 
 describe('Test collision manager', () => {
