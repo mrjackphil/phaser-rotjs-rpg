@@ -1,9 +1,12 @@
 // GameObjects
-export interface GameObjectSystem {
+export interface GameObjectSystem extends ExternalSolidSource {
   addObject: (o: GameObjectEntity) => ID["id"];
   getObjects: () => (GameObjectEntity & ID)[];
-  getSolids: () => (GameObjectEntity & ID)[];
   removeObject: (id: number) => void;
+}
+
+export interface ExternalSolidSource {
+  getSolids: () => Vector[]
 }
 
 export interface GameObjectEntity
@@ -32,12 +35,6 @@ export interface InputSystem {
   isDown: () => boolean;
   isUp: () => boolean;
 }
-
-export interface ExternalSolidSource {
-  getSolids: () => Vector[]
-}
-
-export type FnPositionGetter = () => Vector[]
 
 export interface ID {
   id: number;

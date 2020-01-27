@@ -1,4 +1,4 @@
-import { SolidStateSystem, Vector, FnPositionGetter, ExternalSolidSource } from "./types"
+import { SolidStateSystem, Vector, ExternalSolidSource } from "./types"
 
 export default class SolidManager implements SolidStateSystem {
   private solids: Vector[] = [];
