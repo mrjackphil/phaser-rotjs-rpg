@@ -1,18 +1,20 @@
 import * as ROT from 'rot-js'
 import Map from 'rot-js/lib/map/map'
 import Digger from 'rot-js/lib/map/digger'
-import { RendererSystem, SolidStateSystem, GridSystem } from './types'
+import { RendererSystem, SolidStateSystem, GridSystem, GameObjectSystem } from './types'
 
 export default class MapGenerator {
   private render: RendererSystem;
   private map: Map;
-  private grid: GridSystem
-  private state: SolidStateSystem
+  private grid: GridSystem;
+  private state: SolidStateSystem;
+  private gameobjects: GameObjectSystem;
 
-  constructor(render: RendererSystem, state: SolidStateSystem, grid: GridSystem) {
+  constructor(render: RendererSystem, state: SolidStateSystem, gameobjects: GameObjectSystem, grid: GridSystem) {
     this.render = render
     this.grid = grid
     this.state= state
+    this.gameobjects = gameobjects
   }
 
   public generate() {
@@ -46,6 +48,7 @@ export default class MapGenerator {
   }
 
   private renderDoors(x: number, y: number) {
-    this.render.renderDoor(x, y)
+    const element = this.render.renderDoor(x, y)
+    this.gameobjects.addObject({ x, y, isSolid: true, element })
   }
 }
