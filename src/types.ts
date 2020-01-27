@@ -20,6 +20,7 @@ export interface InputSystem {
 export interface GameObjectSystem {
   addObject: (o: GameObjectEntity) => ID["id"];
   getObjects: () => (GameObjectEntity & ID)[];
+  removeObject: (id: number) => void;
 }
 
 export interface ID {
