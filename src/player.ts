@@ -1,19 +1,19 @@
-import { InputSystem, RendererSystem, Vector, CollisionSystem, GridSystem, PixelVector, PlayerControllerSystem, GridVector } from "./types"
+import { InputSystem, RendererSystem, Vector, CollisionSystem, GridSystem, PixelVector, PlayerControllerSystem } from "./types"
 import { pixelToGridVector, gridToPixelVector } from "./utils"
 import { createPixelVectorType, createGridVectorType } from "./types_util"
 
 const PLAYER_DEFAULT_MOVE_SPEED = 2
 
 export default class Player implements PlayerControllerSystem {
-  private input: InputSystem;
-  private grid: GridSystem;
-  private element: Vector;
-  private speed: number;
-  private isEmpty: (vect: GridVector) => boolean;
+  private input: InputSystem
+  private collision: CollisionSystem
+  private grid: GridSystem
+  private element: Vector
+  private speed: number
 
-  constructor(input: InputSystem, isEmpty: (vect: GridVector) => boolean, renderer: RendererSystem, grid: GridSystem) {
+  constructor(input: InputSystem, collision: CollisionSystem, renderer: RendererSystem, grid: GridSystem) {
     this.input = input
-    this.isEmpty = isEmpty
+    this.collision = collision
     this.grid = grid
     this.element = renderer.renderPlayer(0, 0)
     this.setSpeed(PLAYER_DEFAULT_MOVE_SPEED)
@@ -48,7 +48,7 @@ export default class Player implements PlayerControllerSystem {
   }
 
   private move() {
-    const { element, grid, isEmpty } = this
+    const { element, grid, collision } = this
     const vect = this.getMovementVector()
     if (vect.value.x === 0 && vect.value.y === 0) { return }
 
@@ -63,12 +63,12 @@ export default class Player implements PlayerControllerSystem {
     const nextXGridToCollide = pixelToGridVector(grid, movementXVector)
     const nextYGridToCollide = pixelToGridVector(grid, movementYVector)
 
-    if (isEmpty(nextGridToCollide)) {
+    if (collision.isEmpty(nextGridToCollide)) {
       element.x = nextX
       element.y = nextY
-    } else if (isEmpty(nextYGridToCollide)) {
+    } else if (collision.isEmpty(nextYGridToCollide)) {
       element.y = nextY
-    } else if (isEmpty(nextXGridToCollide)) {
+    } else if (collision.isEmpty(nextXGridToCollide)) {
       element.x = nextX
     }
   }

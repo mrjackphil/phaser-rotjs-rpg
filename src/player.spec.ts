@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
 import Player from './player'
-import { InputSystem, RendererSystem, GridSystem, GridVector } from './types'
+import { InputSystem, CollisionSystem, RendererSystem, GridSystem } from './types'
 
 const inputMock: InputSystem = {
   isDown: () => false,
@@ -9,7 +9,10 @@ const inputMock: InputSystem = {
   isRight: () => false,
   isUp: () => false,
 }
-const collisionMock = () => true
+const collisionMock: CollisionSystem = {
+  isSolid: () => false,
+  isEmpty: () => true
+}
 const renderMock: RendererSystem = {
   renderDoor: () => false,
   renderPlayer: () => ({x: 0, y: 0}),
@@ -62,7 +65,7 @@ describe('Player Controller', () => {
 
     const pl = new Player(
       { ...inputMock, isLeft: () => true, isDown: () => true },
-      (v) => v.value.x !== col - 1,
+      { ...collisionMock, isEmpty: (v) => v.value.x !== col - 1 },
       renderMock,
       { ...gridMock, getTileSize: () => tilesize }
     )
@@ -83,11 +86,11 @@ describe('Player Controller', () => {
 
     const pl = new Player(
       { ...inputMock, isLeft: () => true, isDown: () => true },
-      (v) =>
+      { ...collisionMock, isEmpty: (v) =>
            v.value.x !== 0
         && v.value.y !== 0
         && v.value.x !== 4
-      ,
+      },
       renderMock,
       gridMock
     )
