@@ -31,4 +31,16 @@ describe('Game object methods', () => {
 
     expect(gameobject.getObjects().length).to.be.eq(1)
   })
+
+  it('Remove gameobject', () => {
+    const gameobject = new GameObjectManager()
+    const object: GameObjectEntity = { position: { x: 0, y: 0 } }
+
+    gameobject.addObject(object)
+    const willRemove = gameobject.addObject(object)
+    gameobject.addObject(object)
+    gameobject.removeObject(willRemove)
+
+    expect(gameobject.getObjects().length).to.be.eq(2)
+  })
 })

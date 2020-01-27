@@ -12,6 +12,10 @@ export default class GameObjectManager implements GameObjectSystem {
     return withID.id
   }
 
+  public removeObject(id: number) {
+    this.objects = this.objects.filter(e => e.id !== id)
+  }
+
   public getObjects() {
     return this.objects
   }
