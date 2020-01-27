@@ -30,17 +30,21 @@ export default class Player implements Updated {
 
     const nextX = element.x + vect.value.x
     const nextY = element.y + vect.value.y
-    const nextGridToCollide = pixelToGridVector(grid, createPixelVectorType({ x: nextX, y: nextY }))
 
-    const valueXToZero = (g: GridVector) => ({ ...g, value: { ...g.value, x: 0 }})
-    const valueYToZero = (g: GridVector) => ({ ...g, value: { ...g.value, y: 0 }})
+    const movementVector = createPixelVectorType({ x: nextX, y: nextY })
+    const movementXVector = createPixelVectorType({ x: nextX, y: element.y })
+    const movementYVector = createPixelVectorType({ x: element.x, y: nextY })
+
+    const nextGridToCollide = pixelToGridVector(grid, movementVector)
+    const nextXGridToCollide = pixelToGridVector(grid, movementXVector)
+    const nextYGridToCollide = pixelToGridVector(grid, movementYVector)
 
     if (collision.isEmpty(nextGridToCollide)) {
       element.x = nextX
       element.y = nextY
-    } else if (collision.isEmpty(valueXToZero(nextGridToCollide))) {
+    } else if (collision.isEmpty(nextYGridToCollide)) {
       element.y = nextY
-    } else if (collision.isEmpty(valueYToZero(nextGridToCollide))) {
+    } else if (collision.isEmpty(nextXGridToCollide)) {
       element.x = nextX
     }
   }
