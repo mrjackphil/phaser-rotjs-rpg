@@ -55,7 +55,7 @@ function create() {
   const input: InputSystem = new Input(scene)
   const renderer: RendererSystem = new RendererText(scene, grid)
   const collision: CollisionSystem = new CollisionManager(solids)
-  const player: PlayerControllerSystem = new Player(input, collision, renderer, grid)
+  const player: PlayerControllerSystem = new Player(input, collision.isEmpty.bind(collision), renderer, grid)
   const map = new MapGenerator(renderer, solids, gameobjects, grid)
 
   map.generate()
