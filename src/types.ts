@@ -34,7 +34,7 @@ export interface Vector {
   y: number;
 }
 
-export interface StateSystem {
+export interface SolidStateSystem {
   addSolid: (o: Vector) => void;
   getSolids: () => Vector[];
 }

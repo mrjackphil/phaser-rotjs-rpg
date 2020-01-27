@@ -3,10 +3,10 @@ import Input from './input'
 import Player from './player'
 import MapGenerator from './map'
 import RendererText from './renderer'
-import StateManager from './state'
+import SolidManager from './state'
 import { getRandomNotSolidPosition } from './random'
 import CollisionManager from './collision'
-import { Updated, InputSystem, StateSystem, CollisionSystem, RendererSystem, GridSystem, PixelVector, GridVector, PlayerControllerSystem } from './types'
+import { Updated, InputSystem, SolidStateSystem, CollisionSystem, RendererSystem, GridSystem, PixelVector, GridVector, PlayerControllerSystem } from './types'
 import GridManager from './grid'
 
 document.body.style.margin = "0"
@@ -48,7 +48,7 @@ function preload() {
 function create() {
   const scene = this as Phaser.Scene
   const grid: GridSystem = new GridManager(50, 37, 16)
-  const state: StateSystem = new StateManager()
+  const state: SolidStateSystem = new SolidManager()
   const input: InputSystem = new Input(scene)
   const renderer: RendererSystem = new RendererText(scene, grid)
   const collision: CollisionSystem = new CollisionManager(state)
