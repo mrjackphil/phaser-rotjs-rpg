@@ -2,7 +2,6 @@ import { expect } from 'chai'
 import 'mocha'
 import Player from './player'
 import { InputSystem, CollisionSystem, RendererSystem, GridSystem } from './types'
-import { createGridVectorType } from './types_util'
 
 const inputMock: InputSystem = {
   isDown: () => false,
