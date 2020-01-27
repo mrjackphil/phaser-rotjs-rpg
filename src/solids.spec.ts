@@ -20,4 +20,11 @@ describe('Test StateManager', () => {
 
     expect(solids.getSolids().length).to.be.eq(2)
   })
+
+  it('add two additional solids', () => {
+    const solids = new SolidManager([[{x: 0, y: 0}], [{ x: 1, y: 1 }]])
+    solids.addSolid({ x: 2, y: 2 })
+
+    expect(solids.getSolids().length).to.be.eq(3)
+  })
 })
