@@ -33,6 +33,18 @@ describe('Player Controller', () => {
     expect(pl.update).to.be.a('function')
   })
 
+  it('Spawns on 16, 16', () => {
+    const pl = new Player(
+      { ...inputMock, isLeft: () => true },
+      collisionMock,
+      renderMock,
+      gridMock
+    )
+
+    pl.moveToCell({ x: 1, y: 1 })
+    expect(pl.element).to.contain({ x: 16, y: 16 })
+  })
+
   it('Moves left', () => {
     const pl = new Player(
       { ...inputMock, isLeft: () => true },
@@ -45,17 +57,5 @@ describe('Player Controller', () => {
     pl.update()
 
     expect(pl.element.x).to.be.eq(-1)
-  })
-
-  it('Spawns on 16, 16', () => {
-    const pl = new Player(
-      { ...inputMock, isLeft: () => true },
-      collisionMock,
-      renderMock,
-      gridMock
-    )
-
-    pl.moveToCell({ x: 1, y: 1 })
-    expect(pl.element).to.contain({ x: 16, y: 16 })
   })
 })
