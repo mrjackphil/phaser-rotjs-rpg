@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import 'mocha'
-import SolidManager from './state'
+import SolidManager from './solids'
 
 describe('Test StateManager', () => {
   it('state has solids', () => {
