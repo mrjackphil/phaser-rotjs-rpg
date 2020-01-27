@@ -1,10 +1,10 @@
-import { SolidStateSystem, Vector, FnPositionGetter } from "./types"
+import { SolidStateSystem, Vector, FnPositionGetter, ExternalSolidSource } from "./types"
 
 export default class SolidManager implements SolidStateSystem {
   private solids: Vector[] = [];
-  private additionals: FnPositionGetter[];
+  private additionals: ExternalSolidSource[];
 
-  constructor(additionalSolidStates?: FnPositionGetter[]) {
+  constructor(additionalSolidStates?: ExternalSolidSource[]) {
     this.additionals = additionalSolidStates || []
   }
 
@@ -14,7 +14,7 @@ export default class SolidManager implements SolidStateSystem {
 
   public getSolids() {
     const otherSolids = this.additionals
-      .map( e => e() )
+      .map( e => e.getSolids() )
       .reduce( (acc, e) => acc.concat(e), [])
     return this.solids.concat(otherSolids)
   }

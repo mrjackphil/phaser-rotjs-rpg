@@ -19,16 +19,14 @@ describe('Test StateManager', () => {
         solids: [{x: 1, y: 1 }],
         getSolids: function() { return this.solids }
     }
-    const extSolids = externalSolidSource.getSolids.bind(externalSolidSource)
-
-    const solids = new SolidManager([extSolids])
+    const solids = new SolidManager([externalSolidSource])
     solids.addSolid({ x: 1, y: 1 })
 
     expect(solids.getSolids().length).to.be.eq(2)
   })
 
   it('add two additional solids', () => {
-    const externalSolidSource = {
+    const extSolids = {
         solids: [{x: 1, y: 1 }],
         getSolids: function() { return this.solids }
     }
@@ -36,10 +34,8 @@ describe('Test StateManager', () => {
         solids: [{x: 2, y: 2 }],
         getSolids: function() { return this.solids }
     }
-    const extSolids = externalSolidSource.getSolids.bind(externalSolidSource)
-    const extSolid2 = externalSolidSourc2.getSolids.bind(externalSolidSourc2)
 
-    const solids = new SolidManager([extSolids, extSolid2])
+    const solids = new SolidManager([extSolids, externalSolidSourc2])
     solids.addSolid({ x: 1, y: 1 })
 
     expect(solids.getSolids().length).to.be.eq(3)
@@ -50,8 +46,7 @@ describe('Test StateManager', () => {
         solids: [{x: 1, y: 1 }],
         getSolids: function() { return this.solids }
     }
-    const extSolids = externalSolidSource.getSolids.bind(externalSolidSource)
-    const solids = new SolidManager([extSolids])
+    const solids = new SolidManager([externalSolidSource])
     solids.addSolid({ x: 1, y: 1 })
 
     externalSolidSource.solids = []

@@ -50,8 +50,7 @@ function create() {
   const scene = this as Phaser.Scene
   const grid: GridSystem = new GridManager(50, 37, 16)
   const gameobjects = new GameObjectManager()
-  const externalSolids = gameobjects.getSolids.bind(gameobjects)
-  const solids: SolidStateSystem = new SolidManager([ externalSolids ])
+  const solids: SolidStateSystem = new SolidManager([ gameobjects ])
   const input: InputSystem = new Input(scene)
   const renderer: RendererSystem = new RendererText(scene, grid)
   const collision: CollisionSystem = new CollisionManager(solids)

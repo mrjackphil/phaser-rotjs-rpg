@@ -33,6 +33,10 @@ export interface InputSystem {
   isUp: () => boolean;
 }
 
+export interface ExternalSolidSource {
+  getSolids: () => Vector[]
+}
+
 export type FnPositionGetter = () => Vector[]
 
 export interface ID {
