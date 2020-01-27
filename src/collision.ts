@@ -1,4 +1,4 @@
-import { StateSystem, Vector, CollisionSystem, GridVector, GridSystem } from "./types"
+import { StateSystem, CollisionSystem, GridVector } from "./types"
 
 export default class CollisionManager implements CollisionSystem {
   private state: StateSystem;
