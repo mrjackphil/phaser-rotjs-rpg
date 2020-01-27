@@ -11,6 +11,7 @@ export interface GameObjectEntity
 
 export interface GameObjectParameters {
   isSolid: boolean;
+  element: any;
 }
 // Player Management
 export interface PlayerControllerSystem extends Updated {
