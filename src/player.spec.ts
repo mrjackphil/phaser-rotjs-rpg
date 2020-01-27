@@ -58,4 +58,23 @@ describe('Player Controller', () => {
 
     expect(pl.element.x).to.be.eq(-1)
   })
+
+  it('Press right/down but down is blocked', () => {
+    const tilesize = 1
+    const row = 5
+    const col = 6
+
+    const pl = new Player(
+      { ...inputMock, isRight: () => true, isDown: () => true },
+      { ...collisionMock, isEmpty: (v) => v.value.x !== col + 1 },
+      renderMock,
+      { ...gridMock, getTileSize: () => tilesize }
+    )
+
+    pl.speed = 1
+    pl.moveToCell(col, row)
+    pl.update()
+
+    expect(pl.element).to.contain({ x: col * tilesize, y: row * tilesize + 1 })
+  })
 })
