@@ -46,35 +46,37 @@ describe('Player Controller', () => {
     expect(pl.element.x).to.be.eq(-1)
   })
 
-  it('Moves up/left but left blocked', () => {
+  it('Moves down/right but right blocked', () => {
+    const tileSize = 16
     const pl = new Player(
-      { ...inputMock, isLeft: () => true, isUp: () => true },
-      { ...collisionMock, isEmpty: ({value}) => value.x !== -1 },
+      { ...inputMock, isRight: () => true, isDown: () => true },
+      { ...collisionMock, isEmpty: ({value}) => value.x !== 1 },
       renderMock,
-      gridMock
+      { ...gridMock, getTileSize: () => tileSize }
     )
 
+    pl.element.x = tileSize
+    pl.element.y = tileSize
     pl.speed = 2
     pl.update()
 
-    expect(pl.element.x).to.be.eq(0)
-    expect(pl.element.y).to.be.eq(-16)
+    expect(pl.element).to.be.contain( { x: tileSize, y: tileSize + 2 })
   })
 
-  it('Moves up/left but up blocked', () => {
+  it('Moves down/right but down blocked', () => {
+    const tileSize = 16
     const pl = new Player(
-      { ...inputMock, isRight: () => true, isUp: () => true },
-      { ...collisionMock, isEmpty: ({value}) => value.y !== -1 },
+      { ...inputMock, isRight: () => true, isDown: () => true },
+      { ...collisionMock, isEmpty: ({value}) => value.y !== 1 },
       renderMock,
-      gridMock
+      { ...gridMock, getTileSize: () => tileSize }
     )
 
-    pl.element.x = 16
-    pl.element.y = 16
+    pl.element.x = tileSize
+    pl.element.y = tileSize
     pl.speed = 2
     pl.update()
 
-    expect(pl.element.x).to.be.eq(2)
-    expect(pl.element.y).to.be.eq(0)
+    expect(pl.element).to.be.contain( { x: tileSize + 2, y: tileSize })
   })
 })
