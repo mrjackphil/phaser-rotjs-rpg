@@ -12,6 +12,17 @@ describe('Game object methods', () => {
     expect(id).to.be.a('number')
   })
 
+  it('Add several object will increase the id number', () => {
+    const gameobject = new GameObjectManager()
+    const object: GameObjectEntity = { position: { x: 0, y: 0 } }
+
+    const id1 = gameobject.addObject(object)
+    const id2 = gameobject.addObject(object)
+    const id3 = gameobject.addObject(object)
+
+    expect([id1, id2, id3]).to.be.deep.eq([1, 2, 3])
+  })
+
   it('Add game object', () => {
     const gameobject = new GameObjectManager()
     const object: GameObjectEntity = { position: { x: 0, y: 0 } }
