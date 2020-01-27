@@ -9,6 +9,10 @@ import CollisionManager from './collision'
 import { Updated, InputSystem, StateSystem, CollisionSystem, RendererSystem, GridSystem, PixelVector, GridVector, PlayerControllerSystem } from './types'
 import GridManager from './grid'
 
+document.body.style.margin = "0"
+document.body.style.padding = "0"
+document.body.style.background = "black"
+
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   width: 800,
