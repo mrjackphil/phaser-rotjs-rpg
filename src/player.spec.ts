@@ -59,22 +59,46 @@ describe('Player Controller', () => {
     expect(pl.element.x).to.be.eq(-1)
   })
 
-  it('Press right/down but down is blocked', () => {
-    const tilesize = 1
+  it('Press left/down but down is blocked', () => {
+    const tilesize = 16
     const row = 5
     const col = 6
 
     const pl = new Player(
-      { ...inputMock, isRight: () => true, isDown: () => true },
-      { ...collisionMock, isEmpty: (v) => v.value.x !== col + 1 },
+      { ...inputMock, isLeft: () => true, isDown: () => true },
+      { ...collisionMock, isEmpty: (v) => v.value.x !== col - 1 },
       renderMock,
       { ...gridMock, getTileSize: () => tilesize }
     )
 
-    pl.speed = 1
+    const half = tilesize / 2
+    const speed = half
+    pl.speed = speed
     pl.moveToCell(col, row)
     pl.update()
+    pl.update()
 
-    expect(pl.element).to.contain({ x: col * tilesize, y: row * tilesize + 1 })
+    expect(pl.element).to.contain({ x: col * tilesize - speed, y: row * tilesize + (speed * 2) })
+  })
+
+  it('Press left/down but down is blocked and zero cells blocked', () => {
+    const tilesize = 16
+
+    const pl = new Player(
+      { ...inputMock, isLeft: () => true, isDown: () => true },
+      { ...collisionMock, isEmpty: (v) =>
+           v.value.x !== 0
+        && v.value.y !== 0
+        && v.value.x !== 4
+      },
+      renderMock,
+      gridMock
+    )
+
+    pl.speed = 16
+    pl.moveToCell(5, 5)
+    pl.update()
+
+    expect(pl.element).to.contain({ x: 5 * tilesize, y: 5 * tilesize + tilesize })
   })
 })
