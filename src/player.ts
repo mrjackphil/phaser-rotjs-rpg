@@ -36,7 +36,7 @@ export default class Player implements PlayerControllerSystem {
   }
 
   public setSpeed(speed: number ) {
-    this.speed = speed
+    return this.speed = speed
   }
 
   public moveToCell(col: number, row: number) {

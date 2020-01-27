@@ -1,5 +1,13 @@
 export interface PlayerControllerSystem extends Updated {
-  moveToCell: (col: number, row: number) => void
+  moveToCell: (col: number, row: number) => void;
+  getPixelPosition: () => PixelVector
+  getGridPosition: () => GridVector
+  getSpeed: () => number
+  setSpeed: (speed: number) => number
+}
+
+export interface Updated {
+  update: () => void
 }
 
 export interface InputSystem {
@@ -21,6 +29,11 @@ export interface GridSystem {
   getCellCount: () => number;
 }
 
+export interface Vector {
+  x: number;
+  y: number;
+}
+
 export interface StateSystem {
   addSolid: (o: Vector) => void;
   getSolids: () => Vector[];
@@ -32,14 +45,7 @@ export interface RendererSystem {
   renderPlayer: (x: number, y: number) => Vector;
 }
 
-export interface Updated {
-  update: () => void
-}
-
-export interface Vector {
-  x: number;
-  y: number;
-}
+export type VectorAlgebraicType = PixelVector | GridVector
 
 export interface GridVector {
   kind: 'grid',
@@ -50,5 +56,3 @@ export interface PixelVector {
   kind: 'pixel',
   value: Vector
 }
-
-export type VectorAlgebraicType = PixelVector | GridVector
