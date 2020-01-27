@@ -48,12 +48,12 @@ function preload() {
 function create() {
   const scene = this as Phaser.Scene
   const grid: GridSystem = new GridManager(50, 37, 16)
-  const state: SolidStateSystem = new SolidManager()
+  const solids: SolidStateSystem = new SolidManager()
   const input: InputSystem = new Input(scene)
   const renderer: RendererSystem = new RendererText(scene, grid)
-  const collision: CollisionSystem = new CollisionManager(state)
+  const collision: CollisionSystem = new CollisionManager(solids)
   const player: PlayerControllerSystem = new Player(input, collision, renderer, grid)
-  const map = new MapGenerator(renderer, state, grid)
+  const map = new MapGenerator(renderer, solids, grid)
 
   map.generate()
 
