@@ -1,3 +1,20 @@
+// GameObjects
+
+export interface GameObjectSystem {
+  addObject: (o: GameObjectEntity) => ID["id"];
+  getObjects: () => (GameObjectEntity & ID)[];
+  getSolids: () => (GameObjectEntity & ID)[];
+  removeObject: (id: number) => void;
+}
+
+export interface GameObjectEntity extends Partial<GameObjectParameters>{
+  position: Vector;
+}
+
+export interface GameObjectParameters {
+  isSolid: boolean;
+}
+// Player Management
 export interface PlayerControllerSystem extends Updated {
   moveToCell: (col: number, row: number) => void;
   getPixelPosition: () => PixelVector
@@ -19,18 +36,8 @@ export interface InputSystem {
 
 export type FnPositionGetter = () => Vector[]
 
-export interface GameObjectSystem {
-  addObject: (o: GameObjectEntity) => ID["id"];
-  getObjects: () => (GameObjectEntity & ID)[];
-  removeObject: (id: number) => void;
-}
-
 export interface ID {
   id: number;
-}
-
-export interface GameObjectEntity {
-  position: Vector;
 }
 
 export interface CollisionSystem {

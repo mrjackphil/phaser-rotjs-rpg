@@ -57,4 +57,15 @@ describe('Game object methods', () => {
 
     expect(lastAdded).to.be.eq(3)
   })
+
+  it('Get solid objects', () => {
+    const gameobject = new GameObjectManager()
+    const solidObj: GameObjectEntity = { position: { x: 0, y: 0 }, isSolid: true }
+    const nonSolidObj: GameObjectEntity = { position: { x: 0, y: 0 }, isSolid: false }
+    gameobject.addObject(solidObj)
+    gameobject.addObject(solidObj)
+    gameobject.addObject(nonSolidObj)
+
+    expect(gameobject.getSolids().length).to.be.eq(2)
+  })
 })

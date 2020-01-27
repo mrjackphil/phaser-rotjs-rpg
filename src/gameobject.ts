@@ -20,4 +20,8 @@ export default class GameObjectManager implements GameObjectSystem {
   public getObjects() {
     return this.objects
   }
+
+  public getSolids() {
+    return this.getObjects().filter( e => e.isSolid)
+  }
 }
