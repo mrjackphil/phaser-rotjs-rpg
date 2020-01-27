@@ -5,22 +5,38 @@ import { createPixelVectorType, createGridVectorType } from "./types_util"
 const PLAYER_DEFAULT_MOVE_SPEED = 2
 
 export default class Player implements PlayerControllerSystem {
-  speed: number;
-  input: InputSystem
-  element: Vector
-  collision: CollisionSystem
-  grid: GridSystem
+  private input: InputSystem
+  private collision: CollisionSystem
+  private grid: GridSystem
+  private element: Vector
+  private speed: number
 
   constructor(input: InputSystem, collision: CollisionSystem, renderer: RendererSystem, grid: GridSystem) {
     this.input = input
-    this.speed = PLAYER_DEFAULT_MOVE_SPEED
     this.collision = collision
     this.grid = grid
     this.element = renderer.renderPlayer(0, 0)
+    this.setSpeed(PLAYER_DEFAULT_MOVE_SPEED)
   }
 
   public update() {
     this.move()
+  }
+
+  public getPixelPosition() {
+    return createPixelVectorType({ x: this.element.x, y: this.element.y })
+  }
+
+  public getGridPosition() {
+    return createGridVectorType({ x: this.element.x, y: this.element.y })
+  }
+
+  public getSpeed() {
+    return this.speed
+  }
+
+  public setSpeed(speed: number ) {
+    this.speed = speed
   }
 
   public moveToCell(col: number, row: number) {

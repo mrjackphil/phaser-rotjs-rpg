@@ -41,7 +41,7 @@ describe('Player Controller', () => {
     )
 
     pl.moveToCell(1, 1)
-    expect(pl.element).to.contain({ x: 16, y: 16 })
+    expect(pl.getPixelPosition().value).to.contain({ x: 16, y: 16 })
   })
 
   it('Moves left', () => {
@@ -52,10 +52,10 @@ describe('Player Controller', () => {
       gridMock
     )
 
-    pl.speed = 1
+    pl.setSpeed(1)
     pl.update()
 
-    expect(pl.element.x).to.be.eq(-1)
+    expect(pl.getPixelPosition().value.x).to.be.eq(-1)
   })
 
   it('Press left/down but down is blocked', () => {
@@ -72,12 +72,13 @@ describe('Player Controller', () => {
 
     const half = tilesize / 2
     const speed = half
-    pl.speed = speed
+
+    pl.setSpeed(speed)
     pl.moveToCell(col, row)
     pl.update()
     pl.update()
 
-    expect(pl.element).to.contain({ x: col * tilesize - speed, y: row * tilesize + (speed * 2) })
+    expect(pl.getPixelPosition().value).to.contain({ x: col * tilesize - speed, y: row * tilesize + (speed * 2) })
   })
 
   it('Press left/down but down is blocked and zero cells blocked', () => {
@@ -94,10 +95,10 @@ describe('Player Controller', () => {
       gridMock
     )
 
-    pl.speed = 16
+    pl.setSpeed(tilesize)
     pl.moveToCell(5, 5)
     pl.update()
 
-    expect(pl.element).to.contain({ x: 5 * tilesize, y: 5 * tilesize + tilesize })
+    expect(pl.getPixelPosition().value).to.contain({ x: 5 * tilesize, y: 5 * tilesize + tilesize })
   })
 })
