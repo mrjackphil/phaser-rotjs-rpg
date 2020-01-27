@@ -14,6 +14,9 @@ export default class GameObjectManager implements GameObjectSystem {
   }
 
   public removeObject(id: number) {
+    this.objects
+      .filter(e => e.id === id)
+      .forEach(e => e?.element?.destroy())
     this.objects = this.objects.filter(e => e.id !== id)
   }
 
