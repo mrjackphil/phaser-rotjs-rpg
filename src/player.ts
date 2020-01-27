@@ -26,6 +26,7 @@ export default class Player implements Updated {
   private move() {
     const { element, grid, collision } = this
     const vect = this.getMovementVector()
+    if (vect.value.x === 0 && vect.value.y === 0) { return }
 
     const nextX = element.x + vect.value.x
     const nextY = element.y + vect.value.y
