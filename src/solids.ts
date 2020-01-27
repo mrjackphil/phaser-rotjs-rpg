@@ -7,7 +7,6 @@ export default class SolidManager implements SolidStateSystem {
     this.additionals = additionalSolidStates || []
   }
 
-
   public addSolid(o: Vector) {
     this.solids.push(o)
   }
