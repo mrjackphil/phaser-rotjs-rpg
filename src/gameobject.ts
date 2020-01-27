@@ -1,11 +1,12 @@
 import { GameObjectEntity, ID, GameObjectSystem } from "./types"
 
 export default class GameObjectManager implements GameObjectSystem {
-  private objects: (GameObjectEntity & ID)[]= []
+  private objects: (GameObjectEntity & ID)[]= [];
+  private lastId: number = 0;
 
   public addObject(o: GameObjectEntity) {
-    const maxID = this.objects.reduce( (acc, p) => acc > p.id ? acc : p.id, 0)
-    const withID = { id: maxID + 1, ...o }
+    const withID = { id: this.lastId, ...o }
+    this.lastId++
 
     this.objects.push(withID)
 

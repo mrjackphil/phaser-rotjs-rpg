@@ -20,7 +20,7 @@ describe('Game object methods', () => {
     const id2 = gameobject.addObject(object)
     const id3 = gameobject.addObject(object)
 
-    expect([id1, id2, id3]).to.be.deep.eq([1, 2, 3])
+    expect([id1, id2, id3]).to.be.deep.eq([0, 1, 2])
   })
 
   it('Add game object', () => {
@@ -42,5 +42,19 @@ describe('Game object methods', () => {
     gameobject.removeObject(willRemove)
 
     expect(gameobject.getObjects().length).to.be.eq(2)
+  })
+
+  it('Unique ids for each added gameobject', () => {
+    const gameobject = new GameObjectManager()
+    const object: GameObjectEntity = { position: { x: 0, y: 0 } }
+
+    gameobject.addObject(object)
+    gameobject.addObject(object)
+    const willRemove = gameobject.addObject(object)
+
+    gameobject.removeObject(willRemove)
+    const lastAdded = gameobject.addObject(object)
+
+    expect(lastAdded).to.be.eq(3)
   })
 })
