@@ -2,7 +2,8 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "alwaysStrict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "outDir": "./ts-watch"
   },
   "include": [
     "./src/**/*"
