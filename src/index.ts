@@ -17,6 +17,13 @@ const config: Phaser.Types.Core.GameConfig = {
       preload: preload,
       create: create,
       update: update
+  },
+  scale: {
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    mode: Phaser.Scale.ScaleModes.FIT,
+  },
+  render: {
+    // pixelArt: true
   }
 }
 
