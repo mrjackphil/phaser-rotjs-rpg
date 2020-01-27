@@ -1,6 +1,6 @@
-import { InputSystem, RendererSystem, Updated, Vector, CollisionSystem, GridSystem, PixelVector, GridVector } from "./types"
+import { InputSystem, RendererSystem, Updated, Vector, CollisionSystem, GridSystem, PixelVector } from "./types"
 import { pixelToGridVector, gridToPixelVector } from "./utils"
-import { createPixelVectorType, createGridVectorType, convertVectorType } from "./types_util"
+import { createPixelVectorType, createGridVectorType } from "./types_util"
 
 const PLAYER_DEFAULT_MOVE_SPEED = 2
 
@@ -29,7 +29,6 @@ export default class Player implements Updated {
 
     this.element.x = post.value.x
     this.element.y = post.value.y
-  }
   }
 
   private move() {
