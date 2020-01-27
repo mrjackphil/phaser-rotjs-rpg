@@ -17,6 +17,19 @@ export interface InputSystem {
   isUp: () => boolean;
 }
 
+export interface GameObjectSystem {
+  addObject: (o: GameObjectEntity) => ID["id"];
+  getObjects: () => (GameObjectEntity & ID)[];
+}
+
+export interface ID {
+  id: number;
+}
+
+export interface GameObjectEntity {
+  position: Vector;
+}
+
 export interface CollisionSystem {
   isSolid: (s: GridVector) => boolean;
   isEmpty: (s: GridVector) => boolean;
