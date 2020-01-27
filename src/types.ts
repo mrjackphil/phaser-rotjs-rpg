@@ -17,6 +17,8 @@ export interface InputSystem {
   isUp: () => boolean;
 }
 
+export type FnPositionGetter = () => Vector[]
+
 export interface GameObjectSystem {
   addObject: (o: GameObjectEntity) => ID["id"];
   getObjects: () => (GameObjectEntity & ID)[];
