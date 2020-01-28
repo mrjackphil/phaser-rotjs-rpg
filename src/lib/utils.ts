@@ -1,4 +1,4 @@
-import { GridModel, PixelVector, GridVector } from "./models/types"
+import { GridModel, PixelVector, GridVector } from "../models/types"
 
 export function findCenterPositionOfCell(grid: GridModel, { value: vect }: GridVector): PixelVector {
   const size = grid.getTileSize()

@@ -1,6 +1,6 @@
 import { InputModel, RendererModel, Vector, CollisionModel, GridModel, PixelVector, PlayerControllerModel } from "../models/types"
-import { findCellInPosition, findCenterPositionOfCell } from "../utils"
-import { createPixelVectorType, createGridVectorType } from "../types_util"
+import { findCellInPosition, findCenterPositionOfCell } from "../lib/utils"
+import { createPixelVectorType, createGridVectorType } from "../lib/types_util"
 
 const PLAYER_DEFAULT_MOVE_SPEED = 2
 

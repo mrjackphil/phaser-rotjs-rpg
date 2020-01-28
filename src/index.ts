@@ -9,7 +9,7 @@ import CollisionManager from './entities/collision'
 import { Updated, InputModel, SolidStateModel, CollisionModel, RendererModel, GridModel, PixelVector, GridVector, PlayerControllerModel } from './models/types'
 import GridManager from './entities/grid'
 import GameObjectManager from './entities/gameobject'
-import { debug_setGlobal } from './debug'
+import { debug_setGlobal } from './lib/debug'
 import EventManager from './entities/event'
 
 document.body.style.margin = "0"
