@@ -5,6 +5,7 @@ import InputModel from '../models/InputModel'
 import CollisionModel from '../models/CollisionModel'
 import RendererModel from '../models/RendererModel'
 import GridModel from '../models/GridModel'
+import { createGridVectorType } from '../lib/types_util'
 
 const inputMock: InputModel = {
   isDown: () => false,
@@ -103,5 +104,24 @@ describe('Player Controller', () => {
     pl.update()
 
     expect(pl.getPixelPosition().value).to.contain({ x: 5 * tilesize, y: 5 * tilesize + tilesize })
+  })
+
+  it('Get current grid position', () => {
+    const tilesize = 4
+    const pl = new Player(
+      { ...inputMock, isLeft: () => true, isDown: () => true },
+      { ...collisionMock, isEmpty: (v) =>
+           v.value.x !== 0
+        && v.value.y !== 0
+        && v.value.x !== 4
+      },
+      renderMock,
+      { ...gridMock, getTileSize: () => tilesize }
+    )
+    const gridPos = createGridVectorType({ x: 3, y: 4 })
+
+    pl.moveToCell(3,4)
+
+    expect(pl.getGridPosition()).to.be.deep.eq(gridPos)
   })
 })

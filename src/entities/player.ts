@@ -16,7 +16,12 @@ export default class Player implements PlayerControllerModel {
   private element: Vector
   private speed: number
 
-  constructor(input: InputModel, collision: CollisionModel, renderer: RendererModel, grid: GridModel) {
+  constructor(
+    input: InputModel,
+    collision: CollisionModel,
+    renderer: RendererModel,
+    grid: GridModel
+  ) {
     this.input = input
     this.collision = collision
     this.grid = grid
@@ -29,11 +34,16 @@ export default class Player implements PlayerControllerModel {
   }
 
   public getPixelPosition() {
-    return createPixelVectorType({ x: this.element.x, y: this.element.y })
+    const { x, y } = this.element
+    return createPixelVectorType({ x, y })
   }
 
   public getGridPosition() {
-    return createGridVectorType({ x: this.element.x, y: this.element.y })
+    const { grid } = this;
+    const { x, y } = this.element
+
+    const post = createPixelVectorType({ x, y })
+    return findCellInPosition(grid, post)
   }
 
   public getSpeed() {
