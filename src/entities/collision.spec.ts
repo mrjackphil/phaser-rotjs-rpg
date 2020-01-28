@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import 'mocha'
 import CollisionManager from './collision'
 import StateManager from './solids'
-import { GridVector } from './models/types'
+import { GridVector } from '../models/types'
 
 describe('Test collision manager', () => {
   it('isSolid method returns boolean', () => {

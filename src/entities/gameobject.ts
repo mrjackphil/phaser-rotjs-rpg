@@ -1,4 +1,4 @@
-import { GameObjectEntity, ID, GameObjectModel } from "./models/types"
+import { GameObjectEntity, ID, GameObjectModel } from "../models/types"
 
 export default class GameObjectManager implements GameObjectModel {
   private objects: (GameObjectEntity & ID)[]= [];
