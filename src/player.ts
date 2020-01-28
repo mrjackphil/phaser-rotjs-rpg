@@ -1,5 +1,5 @@
 import { InputSystem, RendererSystem, Vector, CollisionSystem, GridSystem, PixelVector, PlayerControllerSystem } from "./types"
-import { pixelToGridVector, gridToPixelVector } from "./utils"
+import { findCellInPosition, findCenterPositionOfCell } from "./utils"
 import { createPixelVectorType, createGridVectorType } from "./types_util"
 
 const PLAYER_DEFAULT_MOVE_SPEED = 2
@@ -41,7 +41,7 @@ export default class Player implements PlayerControllerSystem {
 
   public moveToCell(col: number, row: number) {
     const gridPos = createGridVectorType({ x: col, y: row })
-    const post = gridToPixelVector(this.grid, gridPos)
+    const post = findCenterPositionOfCell(this.grid, gridPos)
 
     this.element.x = post.value.x
     this.element.y = post.value.y
@@ -59,9 +59,9 @@ export default class Player implements PlayerControllerSystem {
     const movementXVector = createPixelVectorType({ x: nextX, y: element.y })
     const movementYVector = createPixelVectorType({ x: element.x, y: nextY })
 
-    const nextGridToCollide = pixelToGridVector(grid, movementVector)
-    const nextXGridToCollide = pixelToGridVector(grid, movementXVector)
-    const nextYGridToCollide = pixelToGridVector(grid, movementYVector)
+    const nextGridToCollide = findCellInPosition(grid, movementVector)
+    const nextXGridToCollide = findCellInPosition(grid, movementXVector)
+    const nextYGridToCollide = findCellInPosition(grid, movementYVector)
 
     if (collision.isEmpty(nextGridToCollide)) {
       element.x = nextX
