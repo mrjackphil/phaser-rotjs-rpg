@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import 'mocha'
 import Player from './player'
 import InputModel from '../models/InputModel'
-import { createGridVectorType } from '../lib/types_util'
+import { createGridVectorType } from '../lib/vector_type_transform'
 import { GridVector } from '../models/types'
 
 const inputMock: InputModel = {

@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import 'mocha'
-import { createGridVectorType, createPixelVectorType, convertVectorType } from './types_util'
+import { createGridVectorType, createPixelVectorType, convertVectorType } from './vector_type_transform'
 
 describe('Create algebraic types', () => {
   it('create GridVector', () => {

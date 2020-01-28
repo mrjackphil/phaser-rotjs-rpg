@@ -1,8 +1,11 @@
 import { expect } from 'chai'
 import 'mocha'
 import CollisionManager from './collision'
-import StateManager from './solids'
 import { GridVector } from '../models/types'
+
+function StateManager() {}
+StateManager.prototype.getSolids = () => []
+StateManager.prototype.isSolid = () => true
 
 describe('Test collision manager', () => {
   it('isSolid method returns boolean', () => {

@@ -2,7 +2,7 @@ import { Vector, PixelVector, GridVector } from "../models/types"
 import InputModel from "../models/InputModel"
 import PlayerControllerModel from "../models/PlayerControllerModel"
 import { findCellInPosition, findCenterPositionOfCell } from "../lib/utils"
-import { createPixelVectorType, createGridVectorType } from "../lib/types_util"
+import { createPixelVectorType, createGridVectorType } from "../lib/vector_type_transform"
 
 const PLAYER_DEFAULT_MOVE_SPEED = 2
 
