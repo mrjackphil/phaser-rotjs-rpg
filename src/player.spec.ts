@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
 import Player from './player'
-import { InputModel, CollisionModel, RendererModel, GridModel } from './types'
+import { InputModel, CollisionModel, RendererModel, GridModel } from './models/types'
 
 const inputMock: InputModel = {
   isDown: () => false,

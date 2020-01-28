@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
 import { generateRNGlocation, getRandomNotSolidPosition } from './random'
-import { GridModel, CollisionModel } from './types'
+import { GridModel, CollisionModel } from './models/types'
 
 describe('<Unstable>Generate random data', () => {
   it(`return a valid vector with zeros`, () => {

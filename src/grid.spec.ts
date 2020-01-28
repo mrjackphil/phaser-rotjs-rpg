@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
 import GridManager from './grid'
-import { GridModel } from './types'
+import { GridModel } from './models/types'
 
 describe('Grid tests', () => {
   it('get column count', () => {
