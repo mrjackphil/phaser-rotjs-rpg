@@ -69,6 +69,14 @@ describe('Game object methods', () => {
     expect(gameobject.getSolids().length).to.be.eq(2)
   })
 
+  it('Get solid objects', () => {
+    const gameobject = new GameObjectManager()
+    const nonSolidObj: GameObjectEntity = { x: 0, y: 0, isSolid: false }
+    gameobject.addSolid(nonSolidObj)
+
+    expect(gameobject.getSolids().length).to.be.eq(1)
+  })
+
   it('call destroy method on remove object', () => {
     const gameobject = new GameObjectManager()
     let destroyCalled = 0

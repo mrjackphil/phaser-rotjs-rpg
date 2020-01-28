@@ -14,6 +14,11 @@ export default class GameObjectManager implements GameObjectModel {
     return withID.id
   }
 
+  public addSolid(o: GameObjectEntity) {
+    const solid = { ...o, isSolid: true }
+    return this.addObject(solid)
+  }
+
   public removeObject(id: number) {
     this.objects
       .filter(e => e.id === id)

@@ -1,5 +1,6 @@
 import { ExternalSolidSource, GameObjectEntity, ID } from "./types"
-export default interface GameObjectModel extends ExternalSolidSource {
+import SolidStateModel from "./SolidStateModel"
+export default interface GameObjectModel extends ExternalSolidSource, SolidStateModel {
   addObject: (o: GameObjectEntity) => ID["id"]
   getObjects: () => (GameObjectEntity & ID)[]
   removeObject: (id: number) => void

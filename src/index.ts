@@ -3,13 +3,11 @@ import Input from './entities/input'
 import Player from './entities/player'
 import MapGenerator from './entities/map'
 import RendererText from './entities/renderer'
-import SolidManager from './entities/solids'
 import { getRandomNotSolidPosition } from './entities/random'
 import CollisionManager from './entities/collision'
 import { Updated } from './models/types'
 import RendererModel from "./models/RendererModel"
 import InputModel from "./models/InputModel"
-import SolidStateModel from "./models/SolidStateModel"
 import GridModel from "./models/GridModel"
 import CollisionModel from "./models/CollisionModel"
 import PlayerControllerModel from "./models/PlayerControllerModel"
@@ -59,17 +57,16 @@ function create() {
   const grid: GridModel = new GridManager(50, 37, 16)
   const gameobjects = new GameObjectManager()
   const event = new EventManager()
-  const solids: SolidStateModel = new SolidManager([ gameobjects ])
   const input: InputModel = new Input(scene)
   const renderer: RendererModel = new RendererText(scene, grid)
-  const collision: CollisionModel = new CollisionManager(solids)
+  const collision: CollisionModel = new CollisionManager(gameobjects)
   const player: PlayerControllerModel = new Player(
     input,
     collision.isEmpty,
     renderer.renderPlayer,
     grid.getTileSize()
   )
-  const map = new MapGenerator(renderer, solids, gameobjects, grid)
+  const map = new MapGenerator(renderer, gameobjects, gameobjects, grid)
 
   map.generate()
 
@@ -87,7 +84,6 @@ function create() {
     scene,
     grid,
     gameobjects,
-    solids,
     input,
     renderer,
     collision,
