@@ -23,7 +23,7 @@ export default class MapGenerator {
     const height = this.grid.getRowCount()
 
     this.map = new ROT.Map.Digger(width, height)
-    this.map.create(this.mapgenCallback.bind(this))
+    this.map.create(this.onCellRender.bind(this))
     this.drawDoors()
   }
 
@@ -32,23 +32,23 @@ export default class MapGenerator {
       const rooms = this.map.getRooms();
       for (var i=0; i<rooms.length; i++) {
           var room = rooms[i];
-          room.getDoors(this.renderDoors.bind(this));
+          room.getDoors(this.onRenderDoors.bind(this));
       }
     }
   }
 
-  private mapgenCallback(x: number, y: number, isWall: 0 | 1) {
+  private onCellRender(x: number, y: number, isWall: 0 | 1) {
     if (isWall) {
-      this.renderWall(x, y)
+      this.onRenderWall(x, y)
       this.gameobjects.addSolid({ x, y })
     }
   }
 
-  private renderWall(x: number, y: number) {
+  private onRenderWall(x: number, y: number) {
     this.render.renderWall(x, y)
   }
 
-  private renderDoors(x: number, y: number) {
+  private onRenderDoors(x: number, y: number) {
     const element = this.render.renderDoor(x, y)
     this.gameobjects.addObject({ x, y, isSolid: true, element })
   }
