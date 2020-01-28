@@ -12,7 +12,7 @@ const PLAYER_DEFAULT_MOVE_SPEED = 2
 export default class Player implements PlayerControllerModel {
   private input: InputModel
   private collision: CollisionModel
-  private grid: GridModel
+  private tilesize: number
   private element: Vector
   private speed: number
 
@@ -20,11 +20,11 @@ export default class Player implements PlayerControllerModel {
     input: InputModel,
     collision: CollisionModel,
     renderPlayer: () => Vector,
-    grid: GridModel
+    tilesize: number
   ) {
     this.input = input
     this.collision = collision
-    this.grid = grid
+    this.tilesize = tilesize
     this.element = renderPlayer()
     this.setSpeed(PLAYER_DEFAULT_MOVE_SPEED)
   }
@@ -39,11 +39,11 @@ export default class Player implements PlayerControllerModel {
   }
 
   public getGridPosition() {
-    const { grid } = this;
+    const { tilesize } = this;
     const { x, y } = this.element
 
     const post = createPixelVectorType({ x, y })
-    return findCellInPosition(grid, post)
+    return findCellInPosition(tilesize, post)
   }
 
   public getSpeed() {
@@ -56,14 +56,14 @@ export default class Player implements PlayerControllerModel {
 
   public moveToCell(col: number, row: number) {
     const gridPos = createGridVectorType({ x: col, y: row })
-    const post = findCenterPositionOfCell(this.grid, gridPos)
+    const post = findCenterPositionOfCell(this.tilesize, gridPos)
 
     this.element.x = post.value.x
     this.element.y = post.value.y
   }
 
   private move() {
-    const { element, grid, collision } = this
+    const { element, tilesize: grid, collision } = this
     const vect = this.getMovementVector()
     if (vect.value.x === 0 && vect.value.y === 0) { return }
 

@@ -19,12 +19,7 @@ const collisionMock: CollisionModel = {
 }
 const renderMock = () => ({ x: 0, y: 0 })
 
-const gridMock: GridModel = {
-  getCellCount: () => 0,
-  getTileSize: () => 16,
-  getRowCount: () => 5,
-  getColCount: () => 5
-}
+const gridMock: number = 16
 
 describe('Player Controller', () => {
   it('Has update function', () => {
@@ -68,7 +63,7 @@ describe('Player Controller', () => {
       { ...inputMock, isLeft: () => true, isDown: () => true },
       { ...collisionMock, isEmpty: (v) => v.value.x !== col - 1 },
       renderMock,
-      { ...gridMock, getTileSize: () => tilesize }
+      tilesize
     )
 
     const half = tilesize / 2
@@ -93,7 +88,7 @@ describe('Player Controller', () => {
         && v.value.x !== 4
       },
       renderMock,
-      gridMock
+      tilesize
     )
 
     pl.setSpeed(tilesize)
@@ -113,7 +108,7 @@ describe('Player Controller', () => {
         && v.value.x !== 4
       },
       renderMock,
-      { ...gridMock, getTileSize: () => tilesize }
+      tilesize
     )
     const gridPos = createGridVectorType({ x: 3, y: 4 })
 
