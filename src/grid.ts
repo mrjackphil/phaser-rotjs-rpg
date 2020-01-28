@@ -1,6 +1,6 @@
-import { GridSystem } from './types'
+import { GridModel } from './types'
 
-export default class GridManager implements GridSystem {
+export default class GridManager implements GridModel {
   private columns: number;
   private rows: number;
   private tileSize: number;

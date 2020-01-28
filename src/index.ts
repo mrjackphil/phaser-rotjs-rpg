@@ -6,7 +6,7 @@ import RendererText from './renderer'
 import SolidManager from './solids'
 import { getRandomNotSolidPosition } from './random'
 import CollisionManager from './collision'
-import { Updated, InputSystem, SolidStateSystem, CollisionSystem, RendererSystem, GridSystem, PixelVector, GridVector, PlayerControllerSystem } from './types'
+import { Updated, InputModel, SolidStateModel, CollisionModel, RendererModel, GridModel, PixelVector, GridVector, PlayerControllerModel } from './types'
 import GridManager from './grid'
 import GameObjectManager from './gameobject'
 import { debug_setGlobal } from './debug'
@@ -50,14 +50,14 @@ function preload() {
 // Scene functions
 function create() {
   const scene = this as Phaser.Scene
-  const grid: GridSystem = new GridManager(50, 37, 16)
+  const grid: GridModel = new GridManager(50, 37, 16)
   const gameobjects = new GameObjectManager()
   const event = new EventManager()
-  const solids: SolidStateSystem = new SolidManager([ gameobjects ])
-  const input: InputSystem = new Input(scene)
-  const renderer: RendererSystem = new RendererText(scene, grid)
-  const collision: CollisionSystem = new CollisionManager(solids)
-  const player: PlayerControllerSystem = new Player(input, collision, renderer, grid)
+  const solids: SolidStateModel = new SolidManager([ gameobjects ])
+  const input: InputModel = new Input(scene)
+  const renderer: RendererModel = new RendererText(scene, grid)
+  const collision: CollisionModel = new CollisionManager(solids)
+  const player: PlayerControllerModel = new Player(input, collision, renderer, grid)
   const map = new MapGenerator(renderer, solids, gameobjects, grid)
 
   map.generate()

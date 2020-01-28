@@ -1,24 +1,24 @@
 import { expect } from 'chai'
 import 'mocha'
 import Player from './player'
-import { InputSystem, CollisionSystem, RendererSystem, GridSystem } from './types'
+import { InputModel, CollisionModel, RendererModel, GridModel } from './types'
 
-const inputMock: InputSystem = {
+const inputMock: InputModel = {
   isDown: () => false,
   isLeft: () => false,
   isRight: () => false,
   isUp: () => false,
 }
-const collisionMock: CollisionSystem = {
+const collisionMock: CollisionModel = {
   isSolid: () => false,
   isEmpty: () => true
 }
-const renderMock: RendererSystem = {
+const renderMock: RendererModel = {
   renderDoor: () => false,
   renderPlayer: () => ({x: 0, y: 0}),
   renderWall: () => false,
 }
-const gridMock: GridSystem = {
+const gridMock: GridModel = {
   getCellCount: () => 0,
   getTileSize: () => 16,
   getRowCount: () => 5,

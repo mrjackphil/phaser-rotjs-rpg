@@ -1,17 +1,17 @@
-import { InputSystem, RendererSystem, Vector, CollisionSystem, GridSystem, PixelVector, PlayerControllerSystem } from "./types"
+import { InputModel, RendererModel, Vector, CollisionModel, GridModel, PixelVector, PlayerControllerModel } from "./types"
 import { findCellInPosition, findCenterPositionOfCell } from "./utils"
 import { createPixelVectorType, createGridVectorType } from "./types_util"
 
 const PLAYER_DEFAULT_MOVE_SPEED = 2
 
-export default class Player implements PlayerControllerSystem {
-  private input: InputSystem
-  private collision: CollisionSystem
-  private grid: GridSystem
+export default class Player implements PlayerControllerModel {
+  private input: InputModel
+  private collision: CollisionModel
+  private grid: GridModel
   private element: Vector
   private speed: number
 
-  constructor(input: InputSystem, collision: CollisionSystem, renderer: RendererSystem, grid: GridSystem) {
+  constructor(input: InputModel, collision: CollisionModel, renderer: RendererModel, grid: GridModel) {
     this.input = input
     this.collision = collision
     this.grid = grid

@@ -1,5 +1,5 @@
 import { RNG } from "rot-js"
-import { GridSystem, CollisionSystem, Vector, GridVector } from "./types"
+import { GridModel, CollisionModel, Vector, GridVector } from "./types"
 
 export function generateRNGlocation(maxX: number, maxY: number): Vector {
   return {
@@ -8,7 +8,7 @@ export function generateRNGlocation(maxX: number, maxY: number): Vector {
   }
 }
 
-export function getRandomNotSolidPosition(grid: GridSystem, collision: CollisionSystem, count: number = 0): GridVector {
+export function getRandomNotSolidPosition(grid: GridModel, collision: CollisionModel, count: number = 0): GridVector {
   let width = grid.getColCount()
   let height = grid.getRowCount()
   width ? width-- : 0

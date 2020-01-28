@@ -1,6 +1,6 @@
-import { SolidStateSystem, Vector, ExternalSolidSource } from "./types"
+import { SolidStateModel, Vector, ExternalSolidSource } from "./types"
 
-export default class SolidManager implements SolidStateSystem {
+export default class SolidManager implements SolidStateModel {
   private solids: Vector[] = [];
   private additionals: ExternalSolidSource[];
 

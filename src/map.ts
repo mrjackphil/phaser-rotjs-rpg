@@ -1,16 +1,16 @@
 import * as ROT from 'rot-js'
 import Map from 'rot-js/lib/map/map'
 import Digger from 'rot-js/lib/map/digger'
-import { RendererSystem, SolidStateSystem, GridSystem, GameObjectSystem } from './types'
+import { RendererModel, SolidStateModel, GridModel, GameObjectModel } from './types'
 
 export default class MapGenerator {
-  private render: RendererSystem;
+  private render: RendererModel;
   private map: Map;
-  private grid: GridSystem;
-  private state: SolidStateSystem;
-  private gameobjects: GameObjectSystem;
+  private grid: GridModel;
+  private state: SolidStateModel;
+  private gameobjects: GameObjectModel;
 
-  constructor(render: RendererSystem, state: SolidStateSystem, gameobjects: GameObjectSystem, grid: GridSystem) {
+  constructor(render: RendererModel, state: SolidStateModel, gameobjects: GameObjectModel, grid: GridModel) {
     this.render = render
     this.grid = grid
     this.state= state

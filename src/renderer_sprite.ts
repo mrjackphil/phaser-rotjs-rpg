@@ -1,10 +1,10 @@
-import { RendererSystem, GridSystem } from "./types"
+import { RendererModel, GridModel } from "./types"
 
-export default class RendererSprite implements RendererSystem {
+export default class RendererSprite implements RendererModel {
   scene: Phaser.Scene
-  grid: GridSystem
+  grid: GridModel
 
-  constructor(scene: Phaser.Scene, grid: GridSystem) {
+  constructor(scene: Phaser.Scene, grid: GridModel) {
     this.scene = scene
     this.grid = grid
   }

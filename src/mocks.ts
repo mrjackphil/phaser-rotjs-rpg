@@ -1,6 +1,6 @@
-import { GridSystem, Vector } from './types'
+import { GridModel, Vector } from './types'
 
-export const gridMock: GridSystem = {
+export const gridMock: GridModel = {
   getTileSize: () => 0,
   getCellCount: () => 0,
   getColCount: () => 0,

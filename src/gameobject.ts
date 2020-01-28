@@ -1,6 +1,6 @@
-import { GameObjectEntity, ID, GameObjectSystem } from "./types"
+import { GameObjectEntity, ID, GameObjectModel } from "./types"
 
-export default class GameObjectManager implements GameObjectSystem {
+export default class GameObjectManager implements GameObjectModel {
   private objects: (GameObjectEntity & ID)[]= [];
   private lastId: number = 0;
 

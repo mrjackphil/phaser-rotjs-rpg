@@ -1,12 +1,12 @@
-import { GridSystem, PixelVector, GridVector } from "./types"
+import { GridModel, PixelVector, GridVector } from "./types"
 
-export function findCenterPositionOfCell(grid: GridSystem, { value: vect }: GridVector): PixelVector {
+export function findCenterPositionOfCell(grid: GridModel, { value: vect }: GridVector): PixelVector {
   const size = grid.getTileSize()
   const value = { x: vect.x * size, y: vect.y * size }
   return { kind: 'pixel', value }
 }
 
-export function findCellInPosition(grid: GridSystem, { value: vect }: PixelVector): GridVector {
+export function findCellInPosition(grid: GridModel, { value: vect }: PixelVector): GridVector {
   const size = grid.getTileSize()
   const value = { x: Math.round(vect.x / size), y: Math.round(vect.y / size) };
   return { kind: 'grid', value }

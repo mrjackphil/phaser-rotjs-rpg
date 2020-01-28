@@ -1,5 +1,5 @@
 // GameObjects
-export interface GameObjectSystem extends ExternalSolidSource {
+export interface GameObjectModel extends ExternalSolidSource {
   addObject: (o: GameObjectEntity) => ID["id"];
   getObjects: () => (GameObjectEntity & ID)[];
   removeObject: (id: number) => void;
@@ -17,7 +17,7 @@ export interface GameObjectParameters {
   element: any;
 }
 // Player Management
-export interface PlayerControllerSystem extends Updated {
+export interface PlayerControllerModel extends Updated {
   moveToCell: (col: number, row: number) => void;
   getPixelPosition: () => PixelVector
   getGridPosition: () => GridVector
@@ -29,7 +29,7 @@ export interface Updated {
   update: () => void
 }
 
-export interface InputSystem {
+export interface InputModel {
   isLeft: () => boolean;
   isRight: () => boolean;
   isDown: () => boolean;
@@ -40,12 +40,12 @@ export interface ID {
   id: number;
 }
 
-export interface CollisionSystem {
+export interface CollisionModel {
   isSolid: (s: GridVector) => boolean;
   isEmpty: (s: GridVector) => boolean;
 }
 
-export interface GridSystem {
+export interface GridModel {
   getColCount: () => number;
   getRowCount: () => number;
   getTileSize: () => number;
@@ -57,12 +57,12 @@ export interface Vector {
   y: number;
 }
 
-export interface SolidStateSystem {
+export interface SolidStateModel {
   addSolid: (o: Vector) => void;
   getSolids: () => Vector[];
 }
 
-export interface RendererSystem {
+export interface RendererModel {
   renderWall: (x: number, y: number) => void;
   renderDoor: (x: number, y: number) => void;
   renderPlayer: (x: number, y: number) => Vector;
