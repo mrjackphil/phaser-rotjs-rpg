@@ -1,4 +1,5 @@
-import { RendererModel, GridModel } from "../models/types"
+import RendererModel from "../models/RendererModel"
+import GridModel from "../models/GridModel"
 
 export default class RendererText implements RendererModel {
   scene: Phaser.Scene

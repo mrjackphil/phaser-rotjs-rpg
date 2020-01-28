@@ -1,4 +1,9 @@
-import { InputModel, RendererModel, Vector, CollisionModel, GridModel, PixelVector, PlayerControllerModel } from "../models/types"
+import { Vector, PixelVector } from "../models/types"
+import RendererModel from "../models/RendererModel"
+import InputModel from "../models/InputModel"
+import GridModel from "../models/GridModel"
+import CollisionModel from "../models/CollisionModel"
+import PlayerControllerModel from "../models/PlayerControllerModel"
 import { findCellInPosition, findCenterPositionOfCell } from "../lib/utils"
 import { createPixelVectorType, createGridVectorType } from "../lib/types_util"
 

@@ -1,4 +1,6 @@
-import { SolidStateModel, CollisionModel, GridVector } from "../models/types"
+import { GridVector } from "../models/types"
+import SolidStateModel from "../models/SolidStateModel"
+import CollisionModel from "../models/CollisionModel"
 
 export default class CollisionManager implements CollisionModel {
   private state: SolidStateModel;

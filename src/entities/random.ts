@@ -1,5 +1,7 @@
 import { RNG } from "rot-js"
-import { GridModel, CollisionModel, Vector, GridVector } from "../models/types"
+import { Vector, GridVector } from "../models/types"
+import GridModel from "../models/GridModel"
+import CollisionModel from "../models/CollisionModel"
 
 export function generateRNGlocation(maxX: number, maxY: number): Vector {
   return {

@@ -6,7 +6,13 @@ import RendererText from './entities/renderer'
 import SolidManager from './entities/solids'
 import { getRandomNotSolidPosition } from './entities/random'
 import CollisionManager from './entities/collision'
-import { Updated, InputModel, SolidStateModel, CollisionModel, RendererModel, GridModel, PixelVector, GridVector, PlayerControllerModel } from './models/types'
+import { Updated } from './models/types'
+import RendererModel from "./models/RendererModel"
+import InputModel from "./models/InputModel"
+import SolidStateModel from "./models/SolidStateModel"
+import GridModel from "./models/GridModel"
+import CollisionModel from "./models/CollisionModel"
+import PlayerControllerModel from "./models/PlayerControllerModel"
 import GridManager from './entities/grid'
 import GameObjectManager from './entities/gameobject'
 import { debug_setGlobal } from './lib/debug'

@@ -1,4 +1,5 @@
-import { GridModel, Vector } from '../models/types'
+import { Vector } from '../models/types'
+import GridModel from "../models/GridModel"
 
 export const gridMock: GridModel = {
   getTileSize: () => 0,
