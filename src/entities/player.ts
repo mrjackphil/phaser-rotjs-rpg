@@ -19,13 +19,13 @@ export default class Player implements PlayerControllerModel {
   constructor(
     input: InputModel,
     collision: CollisionModel,
-    renderer: RendererModel,
+    renderPlayer: () => Vector,
     grid: GridModel
   ) {
     this.input = input
     this.collision = collision
     this.grid = grid
-    this.element = renderer.renderPlayer(0, 0)
+    this.element = renderPlayer()
     this.setSpeed(PLAYER_DEFAULT_MOVE_SPEED)
   }
 

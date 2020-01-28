@@ -17,11 +17,8 @@ const collisionMock: CollisionModel = {
   isSolid: () => false,
   isEmpty: () => true
 }
-const renderMock: RendererModel = {
-  renderDoor: () => false,
-  renderPlayer: () => ({x: 0, y: 0}),
-  renderWall: () => false,
-}
+const renderMock = () => ({ x: 0, y: 0 })
+
 const gridMock: GridModel = {
   getCellCount: () => 0,
   getTileSize: () => 16,

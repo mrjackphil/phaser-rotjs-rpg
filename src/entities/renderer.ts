@@ -8,6 +8,10 @@ export default class RendererText implements RendererModel {
   constructor(scene: Phaser.Scene, grid: GridModel) {
     this.scene = scene
     this.grid = grid
+
+    this.renderDoor = this.renderDoor.bind(this)
+    this.renderPlayer = this.renderPlayer.bind(this)
+    this.renderWall = this.renderWall.bind(this)
   }
 
   public renderWall(x: number, y: number) {
@@ -25,7 +29,7 @@ export default class RendererText implements RendererModel {
     wall.setAlpha(0.5)
   }
 
-  public renderPlayer(x: number, y: number) {
+  public renderPlayer(x: number = 0, y: number = 0) {
     const { scene } = this
 
     return scene.add.text(x, y, '@')
