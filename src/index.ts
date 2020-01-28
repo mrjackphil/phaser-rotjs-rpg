@@ -66,7 +66,7 @@ function create() {
     renderer.renderPlayer,
     grid.getTileSize()
   )
-  const map = new MapGenerator(renderer, gameobjects, gameobjects, grid)
+  const map = new MapGenerator(renderer, gameobjects, grid)
 
   map.generate()
 

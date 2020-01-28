@@ -13,10 +13,10 @@ export default class MapGenerator {
   private state: SolidStateModel;
   private gameobjects: GameObjectModel;
 
-  constructor(render: RendererModel, state: SolidStateModel, gameobjects: GameObjectModel, grid: GridModel) {
+  constructor(render: RendererModel, gameobjects: GameObjectModel, grid: GridModel) {
     this.render = render
     this.grid = grid
-    this.state= state
+    this.state = gameobjects
     this.gameobjects = gameobjects
   }
 
