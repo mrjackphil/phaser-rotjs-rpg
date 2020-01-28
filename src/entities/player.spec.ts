@@ -2,10 +2,8 @@ import { expect } from 'chai'
 import 'mocha'
 import Player from './player'
 import InputModel from '../models/InputModel'
-import CollisionModel from '../models/CollisionModel'
-import RendererModel from '../models/RendererModel'
-import GridModel from '../models/GridModel'
 import { createGridVectorType } from '../lib/types_util'
+import { GridVector } from '../models/types'
 
 const inputMock: InputModel = {
   isDown: () => false,
@@ -13,10 +11,7 @@ const inputMock: InputModel = {
   isRight: () => false,
   isUp: () => false,
 }
-const collisionMock: CollisionModel = {
-  isSolid: () => false,
-  isEmpty: () => true
-}
+const collisionMock = (s?: GridVector) => true
 const renderMock = () => ({ x: 0, y: 0 })
 
 const gridMock: number = 16
@@ -61,7 +56,7 @@ describe('Player Controller', () => {
 
     const pl = new Player(
       { ...inputMock, isLeft: () => true, isDown: () => true },
-      { ...collisionMock, isEmpty: (v) => v.value.x !== col - 1 },
+      (v) => v.value.x !== col - 1,
       renderMock,
       tilesize
     )
@@ -82,11 +77,11 @@ describe('Player Controller', () => {
 
     const pl = new Player(
       { ...inputMock, isLeft: () => true, isDown: () => true },
-      { ...collisionMock, isEmpty: (v) =>
+      (v) =>
            v.value.x !== 0
         && v.value.y !== 0
         && v.value.x !== 4
-      },
+      ,
       renderMock,
       tilesize
     )
@@ -102,11 +97,11 @@ describe('Player Controller', () => {
     const tilesize = 4
     const pl = new Player(
       { ...inputMock, isLeft: () => true, isDown: () => true },
-      { ...collisionMock, isEmpty: (v) =>
+      (v) =>
            v.value.x !== 0
         && v.value.y !== 0
         && v.value.x !== 4
-      },
+      ,
       renderMock,
       tilesize
     )

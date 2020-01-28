@@ -1,8 +1,5 @@
-import { Vector, PixelVector } from "../models/types"
-import RendererModel from "../models/RendererModel"
+import { Vector, PixelVector, GridVector } from "../models/types"
 import InputModel from "../models/InputModel"
-import GridModel from "../models/GridModel"
-import CollisionModel from "../models/CollisionModel"
 import PlayerControllerModel from "../models/PlayerControllerModel"
 import { findCellInPosition, findCenterPositionOfCell } from "../lib/utils"
 import { createPixelVectorType, createGridVectorType } from "../lib/types_util"
@@ -11,14 +8,14 @@ const PLAYER_DEFAULT_MOVE_SPEED = 2
 
 export default class Player implements PlayerControllerModel {
   private input: InputModel
-  private collision: CollisionModel
+  private collision: (gridPos: GridVector) => boolean
   private tilesize: number
   private element: Vector
   private speed: number
 
   constructor(
     input: InputModel,
-    collision: CollisionModel,
+    collision: (gridPos: GridVector) => boolean,
     renderPlayer: () => Vector,
     tilesize: number
   ) {
@@ -78,12 +75,12 @@ export default class Player implements PlayerControllerModel {
     const nextXGridToCollide = findCellInPosition(grid, movementXVector)
     const nextYGridToCollide = findCellInPosition(grid, movementYVector)
 
-    if (collision.isEmpty(nextGridToCollide)) {
+    if (collision(nextGridToCollide)) {
       element.x = nextX
       element.y = nextY
-    } else if (collision.isEmpty(nextYGridToCollide)) {
+    } else if (collision(nextYGridToCollide)) {
       element.y = nextY
-    } else if (collision.isEmpty(nextXGridToCollide)) {
+    } else if (collision(nextXGridToCollide)) {
       element.x = nextX
     }
   }

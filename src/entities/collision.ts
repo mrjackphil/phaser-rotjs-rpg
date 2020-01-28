@@ -7,6 +7,9 @@ export default class CollisionManager implements CollisionModel {
 
   constructor(state: SolidStateModel) {
     this.state = state
+
+    this.isEmpty = this.isEmpty.bind(this)
+    this.isSolid = this.isSolid.bind(this)
   }
 
   public isEmpty(s: GridVector): boolean {
