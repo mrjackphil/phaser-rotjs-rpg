@@ -10,13 +10,11 @@ export default class MapGenerator {
   private render: RendererModel;
   private map: Map;
   private grid: GridModel;
-  private state: SolidStateModel;
   private gameobjects: GameObjectModel;
 
   constructor(render: RendererModel, gameobjects: GameObjectModel, grid: GridModel) {
     this.render = render
     this.grid = grid
-    this.state = gameobjects
     this.gameobjects = gameobjects
   }
 
@@ -42,7 +40,7 @@ export default class MapGenerator {
   private mapgenCallback(x: number, y: number, isWall: 0 | 1) {
     if (isWall) {
       this.renderWall(x, y)
-      this.state.addSolid({ x, y })
+      this.gameobjects.addSolid({ x, y })
     }
   }
 
