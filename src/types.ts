@@ -79,3 +79,7 @@ export interface PixelVector {
   kind: 'pixel',
   value: Vector
 }
+
+export interface Action extends Partial<ID> {
+  action: () => {}
+}
