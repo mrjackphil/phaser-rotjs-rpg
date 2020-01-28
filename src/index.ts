@@ -9,6 +9,8 @@ import CollisionManager from './collision'
 import { Updated, InputSystem, SolidStateSystem, CollisionSystem, RendererSystem, GridSystem, PixelVector, GridVector, PlayerControllerSystem } from './types'
 import GridManager from './grid'
 import GameObjectManager from './gameobject'
+import { debug_setGlobal } from './debug'
+import EventManager from './event'
 
 document.body.style.margin = "0"
 document.body.style.padding = "0"
@@ -50,6 +52,7 @@ function create() {
   const scene = this as Phaser.Scene
   const grid: GridSystem = new GridManager(50, 37, 16)
   const gameobjects = new GameObjectManager()
+  const event = new EventManager()
   const solids: SolidStateSystem = new SolidManager([ gameobjects ])
   const input: InputSystem = new Input(scene)
   const renderer: RendererSystem = new RendererText(scene, grid)
@@ -66,6 +69,8 @@ function create() {
   )
 
   entitiesToUpdate.push(player)
+  entitiesToUpdate.push(event)
+  debug_setGlobal({event, scene, grid, gameobjects, solids, input, renderer, collision, player, map})
 }
 
 function update() {
