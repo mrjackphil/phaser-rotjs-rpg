@@ -87,20 +87,20 @@ export default class Player implements PlayerControllerModel {
 
   private getMovementVector(): PixelVector {
     const { speed, input } = this
-    const vect = createPixelVectorType({ x: 0, y: 0 })
+    const vect = { x: 0, y: 0 }
 
     if (input.isLeft()) {
-        vect.value.x = -speed;
+        vect.x = -speed;
     } else if (input.isRight()) {
-        vect.value.x = speed;
+        vect.x = speed;
     }
 
     if (input.isUp()) {
-        vect.value.y = -speed;
+        vect.y = -speed;
     } else if (input.isDown()) {
-        vect.value.y = speed;
+        vect.y = speed;
     }
 
-    return vect
+    return createPixelVectorType(vect)
   }
 }
