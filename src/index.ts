@@ -63,7 +63,12 @@ function create() {
   const input: InputModel = new Input(scene)
   const renderer: RendererModel = new RendererText(scene, grid)
   const collision: CollisionModel = new CollisionManager(solids)
-  const player: PlayerControllerModel = new Player(input, collision.isEmpty, renderer.renderPlayer, grid.getTileSize())
+  const player: PlayerControllerModel = new Player(
+    input,
+    collision.isEmpty,
+    renderer.renderPlayer,
+    grid.getTileSize()
+  )
   const map = new MapGenerator(renderer, solids, gameobjects, grid)
 
   map.generate()
@@ -76,7 +81,19 @@ function create() {
 
   entitiesToUpdate.push(player)
   entitiesToUpdate.push(event)
-  debug_setGlobal({event, scene, grid, gameobjects, solids, input, renderer, collision, player, map})
+
+  debug_setGlobal({
+    event,
+    scene,
+    grid,
+    gameobjects,
+    solids,
+    input,
+    renderer,
+    collision,
+    player,
+    map
+  })
 }
 
 function update() {
