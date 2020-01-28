@@ -15,6 +15,8 @@ import GridManager from './entities/grid'
 import GameObjectManager from './entities/gameobject'
 import { debug_setGlobal } from './lib/debug'
 import EventManager from './entities/event'
+import EventModel from './models/EventModel'
+import GameObjectModel from './models/GameObjectModel'
 
 document.body.style.margin = "0"
 document.body.style.padding = "0"
@@ -55,8 +57,8 @@ function preload() {
 function create() {
   const scene = this as Phaser.Scene
   const grid: GridModel = new GridManager(50, 37, 16)
-  const gameobjects = new GameObjectManager()
-  const event = new EventManager()
+  const gameobjects: GameObjectModel = new GameObjectManager()
+  const event: EventModel = new EventManager()
   const input: InputModel = new Input(scene)
   const renderer: RendererModel = new RendererText(scene, grid)
   const collision: CollisionModel = new CollisionManager(gameobjects)
