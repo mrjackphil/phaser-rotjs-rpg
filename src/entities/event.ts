@@ -1,6 +1,7 @@
 import { Action } from "../models/types"
+import EventModel from "../models/EventModel"
 
-export default class EventManager {
+export default class EventManager implements EventModel {
   private events: Action[] = []
   private lastID: number = 0;
 
