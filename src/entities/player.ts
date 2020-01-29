@@ -9,7 +9,7 @@ const PLAYER_DEFAULT_MOVE_SPEED = 2
 export default class Player implements PlayerControllerModel {
   private input: InputModel
   private isEmpty: (gridPos: GridVector) => boolean
-  private tilesize: number
+  private tileSize: number
   private element: Vector
   private speed: number
 
@@ -21,7 +21,7 @@ export default class Player implements PlayerControllerModel {
   ) {
     this.input = input
     this.isEmpty = isEmptyFunc
-    this.tilesize = tilesize
+    this.tileSize = tilesize
     this.element = renderPlayerFunc()
     this.setSpeed(PLAYER_DEFAULT_MOVE_SPEED)
   }
@@ -36,11 +36,11 @@ export default class Player implements PlayerControllerModel {
   }
 
   public getGridPosition() {
-    const { tilesize } = this;
+    const { tileSize } = this;
     const { x, y } = this.element
 
     const post = createPixelVectorType({ x, y })
-    return findCellInPosition(tilesize, post)
+    return findCellInPosition(tileSize, post)
   }
 
   public getSpeed() {
@@ -53,14 +53,14 @@ export default class Player implements PlayerControllerModel {
 
   public moveToCell(col: number, row: number) {
     const gridPos = createGridVectorType({ x: col, y: row })
-    const post = findCenterPositionOfCell(this.tilesize, gridPos)
+    const post = findCenterPositionOfCell(this.tileSize, gridPos)
 
     this.element.x = post.value.x
     this.element.y = post.value.y
   }
 
   private move() {
-    const { element, tilesize, isEmpty: collision } = this
+    const { element, tileSize, isEmpty: collision } = this
     const vect = this.getMovementVector()
     if (vect.value.x === 0 && vect.value.y === 0) { return }
 
@@ -71,9 +71,9 @@ export default class Player implements PlayerControllerModel {
     const movementXVector = createPixelVectorType({ x: nextX, y: element.y })
     const movementYVector = createPixelVectorType({ x: element.x, y: nextY })
 
-    const nextGridToCollide = findCellInPosition(tilesize, movementVector)
-    const nextXGridToCollide = findCellInPosition(tilesize, movementXVector)
-    const nextYGridToCollide = findCellInPosition(tilesize, movementYVector)
+    const nextGridToCollide = findCellInPosition(tileSize, movementVector)
+    const nextXGridToCollide = findCellInPosition(tileSize, movementXVector)
+    const nextYGridToCollide = findCellInPosition(tileSize, movementYVector)
 
     if (collision(nextGridToCollide)) {
       element.x = nextX

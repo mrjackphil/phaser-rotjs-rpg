@@ -25,13 +25,13 @@ export interface Vector {
 export type VectorAlgebraicType = PixelVector | GridVector
 
 export interface GridVector {
-  kind: 'grid',
-  value: Vector
+  kind: 'grid';
+  value: Vector;
 }
 
 export interface PixelVector {
-  kind: 'pixel',
-  value: Vector
+  kind: 'pixel';
+  value: Vector;
 }
 
 export interface Action extends Partial<ID> {
