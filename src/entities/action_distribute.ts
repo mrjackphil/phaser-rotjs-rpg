@@ -1,11 +1,11 @@
 import {Action} from "../models/types"
 
-export default class ActionDispatcher {
+export default class ActionDistributor {
     private actions: Action[] = [open_door, test_action]
 
     public getAction(key: string, params?: any) {
         const action = this.getByKey(key)
-        const isValid = ActionDispatcher.paramValidation(action, params)
+        const isValid = ActionDistributor.paramValidation(action, params)
         return isValid && action
     }
 
