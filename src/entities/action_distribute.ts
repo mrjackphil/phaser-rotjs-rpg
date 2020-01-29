@@ -1,12 +1,15 @@
 import {Action} from "../models/types"
+import ActionDistributorModel from "../models/ActionDistributorModel"
 
-export default class ActionDistributor {
+export default class ActionDistributor implements ActionDistributorModel {
     private actions: Action[] = [open_door, test_action]
 
     public getAction(key: string, params?: any) {
         const action = this.getByKey(key)
-        const isValid = ActionDistributor.paramValidation(action, params)
-        return isValid && action
+
+        ActionDistributor.paramValidation(action, params)
+
+        return action
     }
 
     private getByKey(key: string) {

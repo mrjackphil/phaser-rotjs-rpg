@@ -36,3 +36,5 @@ export interface Action extends Partial<ID> {
   action: () => void;
   condition?: (param: any) => boolean;
 }
+
+export type ActionParams = any
