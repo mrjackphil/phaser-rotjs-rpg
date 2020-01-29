@@ -1,7 +1,3 @@
-export interface ExternalSolidSource {
-  getSolids: () => Vector[]
-}
-
 export interface GameObjectEntity
   extends Vector, Partial<GameObjectParameters> {}
 
@@ -9,6 +5,7 @@ export interface GameObjectParameters {
   isSolid: boolean;
   element: any;
 }
+
 export interface Updated {
   update: () => void
 }
