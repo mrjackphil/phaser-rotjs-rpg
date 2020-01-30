@@ -1,10 +1,10 @@
 import { expect } from 'chai'
 import 'mocha'
 import Player from './player'
-import InputModel from '../types/InputModel'
+import IInput from '../types/IInput'
 import { createGridVectorType } from '../lib/vector_type_transform'
 
-const inputMock: InputModel = {
+const inputMock: IInput = {
   isDown: () => false,
   isLeft: () => false,
   isRight: () => false,

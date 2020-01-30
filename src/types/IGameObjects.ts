@@ -1,7 +1,7 @@
 import {GameObjectEntity, ID, Vector} from "./types"
-import SolidStateModel from "./SolidStateModel"
+import ISolids from "./ISolids"
 
-export default interface GameObjectModel extends SolidStateModel {
+export default interface IGameObjects extends ISolids {
   addObject: (o: GameObjectEntity) => ID["id"]
   getObjects: () => (GameObjectEntity & ID)[]
   removeObject: (id: number) => void

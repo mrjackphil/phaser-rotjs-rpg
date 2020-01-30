@@ -1,8 +1,8 @@
 import { expect } from 'chai'
 import 'mocha'
 import { generateRNGlocation, getRandomNotSolidPosition } from './random'
-import GridModel from '../types/GridModel'
-import CollisionModel from '../types/CollisionModel'
+import IGrid from '../types/IGrid'
+import ICollision from '../types/ICollision'
 
 describe('<Unstable>Generate random data', () => {
   it(`return a valid vector with zeros`, () => {
@@ -11,14 +11,14 @@ describe('<Unstable>Generate random data', () => {
   })
 
   it(`return a non solid object`, () => {
-    const grid: GridModel = {
+    const grid: IGrid = {
       getCellCount: () => 0,
       getColCount: () => 5,
       getRowCount: () => 5,
       getTileSize: () => 0
     }
 
-    const collision: CollisionModel = {
+    const collision: ICollision = {
       isSolid: ({ value }) => !(value.x === 4 && value.y === 4),
       isEmpty: () => false
     }
@@ -28,14 +28,14 @@ describe('<Unstable>Generate random data', () => {
   })
 
   it(`will generate zero vector`, () => {
-    const grid: GridModel = {
+    const grid: IGrid = {
       getCellCount: () => 0,
       getColCount: () => 0,
       getRowCount: () => 0,
       getTileSize: () => 0
     }
 
-    const collision: CollisionModel = {
+    const collision: ICollision = {
       isSolid: () => false,
       isEmpty: () => false
     }
@@ -45,14 +45,14 @@ describe('<Unstable>Generate random data', () => {
   })
 
   it('will fail', () => {
-    const grid: GridModel = {
+    const grid: IGrid = {
       getCellCount: () => 0,
       getColCount: () => 5,
       getRowCount: () => 5,
       getTileSize: () => 0
     }
 
-    const collision: CollisionModel = {
+    const collision: ICollision = {
       isSolid: ({ value }) => !(value.x === 5 && value.y === 5),
       isEmpty: () => false
     }

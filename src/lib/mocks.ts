@@ -1,7 +1,7 @@
 import { Vector } from '../types/types'
-import GridModel from "../types/GridModel"
+import IGrid from "../types/IGrid"
 
-export const gridMock: GridModel = {
+export const gridMock: IGrid = {
   getTileSize: () => 0,
   getCellCount: () => 0,
   getColCount: () => 0,

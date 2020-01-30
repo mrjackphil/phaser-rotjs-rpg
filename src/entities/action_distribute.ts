@@ -1,7 +1,7 @@
 import {Action} from "../types/types"
-import ActionDistributorModel from "../types/ActionDistributorModel"
+import IActionDistributor from "../types/IActionDistributor"
 
-export default class ActionDistributor implements ActionDistributorModel {
+export default class ActionDistributor implements IActionDistributor {
     private actions: Action[] = [open_door, test_action]
 
     public getAction(key: string, params?: any) {

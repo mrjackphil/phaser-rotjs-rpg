@@ -1,6 +1,6 @@
-import GridModel from "../types/GridModel"
+import IGrid from "../types/IGrid"
 
-export default class GridManager implements GridModel {
+export default class GridManager implements IGrid {
   private columns: number;
   private rows: number;
   private tileSize: number;

@@ -1,20 +1,20 @@
 import { Vector, PixelVector, GridVector } from "../types/types"
-import InputModel from "../types/InputModel"
-import PlayerControllerModel from "../types/PlayerControllerModel"
+import IInput from "../types/IInput"
+import IPlayerController from "../types/IPlayerController"
 import { findCellInPosition, findCenterPositionOfCell } from "../lib/utils"
 import { createPixelVectorType, createGridVectorType } from "../lib/vector_type_transform"
 
 const PLAYER_DEFAULT_MOVE_SPEED = 2
 
-export default class Player implements PlayerControllerModel {
-  private input: InputModel
+export default class Player implements IPlayerController {
+  private input: IInput
   private isEmpty: (gridPos: GridVector) => boolean
   private tileSize: number
   private element: Vector
   private speed: number
 
   constructor(
-    input: InputModel,
+    input: IInput,
     isEmptyFunc: (gridPos: GridVector) => boolean,
     renderPlayerFunc: () => Vector,
     tilesize: number

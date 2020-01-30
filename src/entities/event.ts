@@ -1,7 +1,7 @@
 import { Action } from "../types/types"
-import EventModel from "../types/EventModel"
+import IEvent from "../types/IEvent"
 
-export default class EventManager implements EventModel {
+export default class EventManager implements IEvent {
   private events: Action[] = []
   private lastID: number = 0;
 

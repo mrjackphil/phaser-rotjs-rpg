@@ -1,11 +1,11 @@
 import { GridVector } from "../types/types"
-import SolidStateModel from "../types/SolidStateModel"
-import CollisionModel from "../types/CollisionModel"
+import ISolids from "../types/ISolids"
+import ICollision from "../types/ICollision"
 
-export default class CollisionManager implements CollisionModel {
-  private state: SolidStateModel;
+export default class CollisionManager implements ICollision {
+  private state: ISolids;
 
-  constructor(state: SolidStateModel) {
+  constructor(state: ISolids) {
     this.state = state
 
     this.isEmpty = this.isEmpty.bind(this)

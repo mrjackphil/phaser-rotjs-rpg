@@ -1,7 +1,7 @@
 import {GameObjectEntity, ID, Vector} from "../types/types"
-import GameObjectModel from "../types/GameObjectModel"
+import IGameObjects from "../types/IGameObjects"
 
-export default class GameObjectManager implements GameObjectModel {
+export default class GameObjectManager implements IGameObjects {
   private objects: (GameObjectEntity & ID)[]= [];
   private lastId: number = 0;
 

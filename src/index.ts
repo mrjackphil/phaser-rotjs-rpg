@@ -6,17 +6,17 @@ import RendererText from './entities/renderer'
 import { getRandomNotSolidPosition } from './entities/random'
 import CollisionManager from './entities/collision'
 import { Updated } from './types/types'
-import RendererModel from "./types/RendererModel"
-import InputModel from "./types/InputModel"
-import GridModel from "./types/GridModel"
-import CollisionModel from "./types/CollisionModel"
-import PlayerControllerModel from "./types/PlayerControllerModel"
+import IRenderer from "./types/IRenderer"
+import IInput from "./types/IInput"
+import IGrid from "./types/IGrid"
+import ICollision from "./types/ICollision"
+import IPlayerController from "./types/IPlayerController"
 import GridManager from './entities/grid'
 import GameObjectManager from './entities/gameobject'
 import { debug_setGlobal } from './lib/debug'
 import EventManager from './entities/event'
-import EventModel from './types/EventModel'
-import GameObjectModel from './types/GameObjectModel'
+import IEvent from './types/IEvent'
+import IGameObjects from './types/IGameObjects'
 
 document.body.style.margin = "0"
 document.body.style.padding = "0"
@@ -56,13 +56,13 @@ function preload() {
 // Scene functions
 function create() {
   const scene = this as Phaser.Scene
-  const grid: GridModel = new GridManager(50, 37, 16)
-  const gameobjects: GameObjectModel = new GameObjectManager()
-  const event: EventModel = new EventManager()
-  const input: InputModel = new Input(scene)
-  const renderer: RendererModel = new RendererText(scene, grid)
-  const collision: CollisionModel = new CollisionManager(gameobjects)
-  const player: PlayerControllerModel = new Player(
+  const grid: IGrid = new GridManager(50, 37, 16)
+  const gameobjects: IGameObjects = new GameObjectManager()
+  const event: IEvent = new EventManager()
+  const input: IInput = new Input(scene)
+  const renderer: IRenderer = new RendererText(scene, grid)
+  const collision: ICollision = new CollisionManager(gameobjects)
+  const player: IPlayerController = new Player(
     input,
     collision.isEmpty,
     renderer.renderPlayer,

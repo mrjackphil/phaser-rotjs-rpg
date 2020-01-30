@@ -1,11 +1,11 @@
-import RendererModel from "../types/RendererModel"
-import GridModel from "../types/GridModel"
+import IRenderer from "../types/IRenderer"
+import IGrid from "../types/IGrid"
 
-export default class RendererText implements RendererModel {
+export default class RendererText implements IRenderer {
   scene: Phaser.Scene
-  grid: GridModel
+  grid: IGrid
 
-  constructor(scene: Phaser.Scene, grid: GridModel) {
+  constructor(scene: Phaser.Scene, grid: IGrid) {
     this.scene = scene
     this.grid = grid
 
