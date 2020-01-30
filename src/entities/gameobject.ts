@@ -1,4 +1,4 @@
-import { GameObjectEntity, ID } from "../models/types"
+import {GameObjectEntity, ID, Vector} from "../models/types"
 import GameObjectModel from "../models/GameObjectModel"
 
 export default class GameObjectManager implements GameObjectModel {
@@ -32,5 +32,16 @@ export default class GameObjectManager implements GameObjectModel {
 
   public getSolids() {
     return this.getObjects().filter( e => e.isSolid)
+  }
+
+  public getObjectByID(id: number) {
+    return this.getObjects()
+        .filter( object => object.id === id)[0]
+  }
+
+  public getIDByPosition({x, y} : Vector) {
+    return this.getObjects()
+        .filter( obj => obj.x === x && obj.y === y )
+        .map( obj => obj.id )
   }
 }

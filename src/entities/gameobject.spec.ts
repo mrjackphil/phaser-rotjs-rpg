@@ -77,7 +77,7 @@ describe('Game object methods', () => {
     expect(gameobject.getSolids().length).to.be.eq(1)
   })
 
-  it('call destroy method on remove object', () => {
+  it('Call destroy method on remove object', () => {
     const gameobject = new GameObjectManager()
     let destroyCalled = 0
     const destroyFunc = () => { destroyCalled++ }
@@ -86,5 +86,15 @@ describe('Game object methods', () => {
     gameobject.removeObject(id)
 
     expect(destroyCalled).to.be.eq(1)
+  })
+
+  it('Add object and get id by position', () => {
+    const gameobject = new GameObjectManager()
+
+    const validId = gameobject.addObject({ x: 20, y: 22 })
+    gameobject.addObject({ x: 20, y: 20 })
+    const idToCheck = gameobject.getIDByPosition({x: 20, y: 22})
+
+    expect(idToCheck).contains(validId)
   })
 })
