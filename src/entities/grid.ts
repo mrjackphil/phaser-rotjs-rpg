@@ -1,4 +1,4 @@
-import GridModel from "../models/GridModel"
+import GridModel from "../types/GridModel"
 
 export default class GridManager implements GridModel {
   private columns: number;

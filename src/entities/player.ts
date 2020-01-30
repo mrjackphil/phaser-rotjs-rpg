@@ -1,6 +1,6 @@
-import { Vector, PixelVector, GridVector } from "../models/types"
-import InputModel from "../models/InputModel"
-import PlayerControllerModel from "../models/PlayerControllerModel"
+import { Vector, PixelVector, GridVector } from "../types/types"
+import InputModel from "../types/InputModel"
+import PlayerControllerModel from "../types/PlayerControllerModel"
 import { findCellInPosition, findCenterPositionOfCell } from "../lib/utils"
 import { createPixelVectorType, createGridVectorType } from "../lib/vector_type_transform"
 

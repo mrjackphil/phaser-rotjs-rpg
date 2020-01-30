@@ -1,8 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
 import * as Util from './utils'
-import { gridMock } from './mocks'
-import { PixelVector, GridVector } from '../models/types'
+import { PixelVector, GridVector } from '../types/types'
 
 describe('Generate util functions', () => {
   it('convert vector grid -> precise pixel', () => {

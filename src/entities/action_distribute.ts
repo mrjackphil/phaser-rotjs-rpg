@@ -1,5 +1,5 @@
-import {Action} from "../models/types"
-import ActionDistributorModel from "../models/ActionDistributorModel"
+import {Action} from "../types/types"
+import ActionDistributorModel from "../types/ActionDistributorModel"
 
 export default class ActionDistributor implements ActionDistributorModel {
     private actions: Action[] = [open_door, test_action]

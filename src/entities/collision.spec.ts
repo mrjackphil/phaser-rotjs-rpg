@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
 import CollisionManager from './collision'
-import { GridVector } from '../models/types'
+import { GridVector } from '../types/types'
 
 function StateManager() {}
 StateManager.prototype.getSolids = () => []

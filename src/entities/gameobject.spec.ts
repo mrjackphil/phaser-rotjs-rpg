@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
 import GameObjectManager from './gameobject'
-import { GameObjectEntity } from '../models/types'
+import { GameObjectEntity } from '../types/types'
 
 describe('Game object methods', () => {
   it('Add gameobject returns id', () => {

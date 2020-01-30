@@ -1,10 +1,9 @@
 import * as ROT from 'rot-js'
 import Map from 'rot-js/lib/map/map'
 import Digger from 'rot-js/lib/map/digger'
-import GameObjectModel from "../models/GameObjectModel"
-import RendererModel from "../models/RendererModel"
-import SolidStateModel from "../models/SolidStateModel"
-import GridModel from "../models/GridModel"
+import GameObjectModel from "../types/GameObjectModel"
+import RendererModel from "../types/RendererModel"
+import GridModel from "../types/GridModel"
 
 export default class MapGenerator {
   private render: RendererModel;

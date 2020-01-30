@@ -1,4 +1,4 @@
-import InputModel from "../models/InputModel"
+import InputModel from "../types/InputModel"
 
 export default class Input implements InputModel {
   cursors: Phaser.Types.Input.Keyboard.CursorKeys

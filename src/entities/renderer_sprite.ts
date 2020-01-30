@@ -1,5 +1,5 @@
-import RendererModel from "../models/RendererModel"
-import GridModel from "../models/GridModel"
+import RendererModel from "../types/RendererModel"
+import GridModel from "../types/GridModel"
 
 export default class RendererSprite implements RendererModel {
   scene: Phaser.Scene

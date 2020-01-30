@@ -1,4 +1,4 @@
-import { PixelVector, GridVector } from "../models/types"
+import { PixelVector, GridVector } from "../types/types"
 
 export function findCenterPositionOfCell(tilesize: number, { value: vect }: GridVector): PixelVector {
   const value = { x: vect.x * tilesize, y: vect.y * tilesize }

@@ -1,5 +1,5 @@
-import { Action } from "../models/types"
-import EventModel from "../models/EventModel"
+import { Action } from "../types/types"
+import EventModel from "../types/EventModel"
 
 export default class EventManager implements EventModel {
   private events: Action[] = []

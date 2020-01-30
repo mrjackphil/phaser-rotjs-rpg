@@ -1,4 +1,4 @@
-import { Vector, GridVector, PixelVector, VectorAlgebraicType } from "../models/types"
+import { Vector, GridVector, PixelVector, VectorAlgebraicType } from "../types/types"
 
 export function createGridVectorType(value: Vector): GridVector {
   return { kind: 'grid', value }

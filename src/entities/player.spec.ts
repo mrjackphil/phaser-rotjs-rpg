@@ -1,9 +1,8 @@
 import { expect } from 'chai'
 import 'mocha'
 import Player from './player'
-import InputModel from '../models/InputModel'
+import InputModel from '../types/InputModel'
 import { createGridVectorType } from '../lib/vector_type_transform'
-import { GridVector } from '../models/types'
 
 const inputMock: InputModel = {
   isDown: () => false,
@@ -11,7 +10,7 @@ const inputMock: InputModel = {
   isRight: () => false,
   isUp: () => false,
 }
-const collisionMock = (s?: GridVector) => true
+const collisionMock = () => true
 const renderMock = () => ({ x: 0, y: 0 })
 
 const gridMock: number = 16
@@ -61,8 +60,7 @@ describe('Player Controller', () => {
       tilesize
     )
 
-    const half = tilesize / 2
-    const speed = half
+    const speed = tilesize / 2
 
     pl.setSpeed(speed)
     pl.moveToCell(col, row)

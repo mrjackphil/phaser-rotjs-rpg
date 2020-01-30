@@ -5,18 +5,18 @@ import MapGenerator from './entities/map'
 import RendererText from './entities/renderer'
 import { getRandomNotSolidPosition } from './entities/random'
 import CollisionManager from './entities/collision'
-import { Updated } from './models/types'
-import RendererModel from "./models/RendererModel"
-import InputModel from "./models/InputModel"
-import GridModel from "./models/GridModel"
-import CollisionModel from "./models/CollisionModel"
-import PlayerControllerModel from "./models/PlayerControllerModel"
+import { Updated } from './types/types'
+import RendererModel from "./types/RendererModel"
+import InputModel from "./types/InputModel"
+import GridModel from "./types/GridModel"
+import CollisionModel from "./types/CollisionModel"
+import PlayerControllerModel from "./types/PlayerControllerModel"
 import GridManager from './entities/grid'
 import GameObjectManager from './entities/gameobject'
 import { debug_setGlobal } from './lib/debug'
 import EventManager from './entities/event'
-import EventModel from './models/EventModel'
-import GameObjectModel from './models/GameObjectModel'
+import EventModel from './types/EventModel'
+import GameObjectModel from './types/GameObjectModel'
 
 document.body.style.margin = "0"
 document.body.style.padding = "0"
@@ -41,7 +41,7 @@ const config: Phaser.Types.Core.GameConfig = {
 }
 
 // Init variables
-const game = new Phaser.Game(config)
+new Phaser.Game(config)
 let entitiesToUpdate: Updated[] = []
 
 function preload() {
