@@ -41,4 +41,13 @@ describe('Event manager', () => {
 
         expect(ev.getEvents().length).to.be.eq(0)
     })
+
+    it('Get event by id', () => {
+        const ev = new EventManager()
+        const id = ev.add({action: () => "", key: "example"})
+
+        const extractedAction = ev.getEventByID(id)
+
+        expect(extractedAction.key).to.be.eq("example")
+    })
 })

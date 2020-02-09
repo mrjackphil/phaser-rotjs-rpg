@@ -22,4 +22,9 @@ export default class EventManager implements IEvent {
   public getEvents() {
     return this.events
   }
+
+  public getEventByID(id: number) {
+    const emptyAction = { action: () => null, key: "" }
+    return this.events.filter( event => event.id === id )[0] || emptyAction
+  }
 }
