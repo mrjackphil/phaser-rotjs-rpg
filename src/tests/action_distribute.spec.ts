@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import 'mocha'
-import ActionDistributor from './action_distribute'
+import ActionDistributor from '../entities/action_distribute'
 
 describe('Action dispatcher', () => {
   it('get action', () => {

@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import 'mocha'
-import GridManager from './grid'
+import GridManager from '../entities/grid'
 import IGrid from '../types/IGrid'
 
 describe('Grid tests', () => {

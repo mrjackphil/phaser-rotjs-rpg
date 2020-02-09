@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import 'mocha'
-import Player from './player'
+import Player from '../entities/player'
 import IInput from '../types/IInput'
 import { createGridVectorType } from '../lib/vector_type_transform'
 

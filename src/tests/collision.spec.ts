@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import 'mocha'
-import CollisionManager from './collision'
+import CollisionManager from '../entities/collision'
 import { GridVector } from '../types/types'
 
 function StateManager() {}
