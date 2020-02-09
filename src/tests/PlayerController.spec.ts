@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import 'mocha'
-import Player from '../entities/player'
+import PlayerController from '../entities/PlayerController'
 import IInput from '../types/IInput'
 import { createGridVectorType } from '../lib/vector_type_transform'
 
@@ -17,13 +17,13 @@ const gridMock: number = 16
 
 describe('Player Controller', () => {
   it('Has update function', () => {
-    const pl = new Player(inputMock, collisionMock, renderMock, gridMock)
+    const pl = new PlayerController(inputMock, collisionMock, renderMock, gridMock)
 
     expect(pl.update).to.be.a('function')
   })
 
   it('Spawns on 16, 16', () => {
-    const pl = new Player(
+    const pl = new PlayerController(
       { ...inputMock, isLeft: () => true },
       collisionMock,
       renderMock,
@@ -35,7 +35,7 @@ describe('Player Controller', () => {
   })
 
   it('Moves left', () => {
-    const pl = new Player(
+    const pl = new PlayerController(
       { ...inputMock, isLeft: () => true },
       collisionMock,
       renderMock,
@@ -53,7 +53,7 @@ describe('Player Controller', () => {
     const row = 5
     const col = 6
 
-    const pl = new Player(
+    const pl = new PlayerController(
       { ...inputMock, isLeft: () => true, isDown: () => true },
       (v) => v.value.x !== col - 1,
       renderMock,
@@ -73,7 +73,7 @@ describe('Player Controller', () => {
   it('Press left/down but down is blocked and zero cells blocked', () => {
     const tileSize = 16
 
-    const pl = new Player(
+    const pl = new PlayerController(
       { ...inputMock, isLeft: () => true, isDown: () => true },
       (v) =>
            v.value.x !== 0
@@ -93,7 +93,7 @@ describe('Player Controller', () => {
 
   it('Get current grid position', () => {
     const tileSize = 4
-    const pl = new Player(
+    const pl = new PlayerController(
       { ...inputMock, isLeft: () => true, isDown: () => true },
       (v) =>
            v.value.x !== 0

@@ -1,6 +1,6 @@
 import IInput from "../types/IInput"
 
-export default class Input implements IInput {
+export default class InputManager implements IInput {
   cursors: Phaser.Types.Input.Keyboard.CursorKeys
   scene: Phaser.Scene
   keys: {[x: string]: Phaser.Input.Keyboard.Key} = {}

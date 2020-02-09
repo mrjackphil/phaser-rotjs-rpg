@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import 'mocha'
-import GameObjectManager from '../entities/gameobject'
+import GameObjectManager from '../entities/GameObjectManager'
 import { GameObjectEntity } from '../types/types'
 
 describe('Game object methods', () => {

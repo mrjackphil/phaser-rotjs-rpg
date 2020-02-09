@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import 'mocha'
-import { generateRNGLocation, getRandomNotSolidPosition } from '../entities/random'
+import { generateRNGLocation, getRandomNotSolidPosition } from './random'
 import IGrid from '../types/IGrid'
 import ICollision from '../types/ICollision'
 

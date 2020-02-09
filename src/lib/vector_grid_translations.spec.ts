@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import 'mocha'
-import * as Util from './utils'
+import * as Util from './vector_grid_traslations'
 import { PixelVector, GridVector } from '../types/types'
 
 describe('Generate util functions', () => {

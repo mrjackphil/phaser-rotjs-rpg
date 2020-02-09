@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import 'mocha'
-import EventManager from '../entities/event'
+import EventManager from '../entities/EventManager'
 
 describe('Event manager', () => {
     it('Add event', () => {

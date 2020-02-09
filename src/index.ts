@@ -1,20 +1,20 @@
 import Phaser from 'phaser'
-import Input from './entities/input'
-import Player from './entities/player'
-import MapGenerator from './entities/map'
-import RendererText from './entities/renderer'
-import { getRandomNotSolidPosition } from './entities/random'
-import CollisionManager from './entities/collision'
+import InputManager from './entities/InputManager'
+import PlayerController from './entities/PlayerController'
+import MapGenerator from './entities/MapGenerator'
+import RendererText from './entities/RendererText'
+import { getRandomNotSolidPosition } from './lib/random'
+import CollisionManager from './entities/CollisionManager'
 import { Updated } from './types/types'
 import IRenderer from "./types/IRenderer"
 import IInput from "./types/IInput"
 import IGrid from "./types/IGrid"
 import ICollision from "./types/ICollision"
 import IPlayerController from "./types/IPlayerController"
-import GridManager from './entities/grid'
-import GameObjectManager from './entities/gameobject'
+import GridManager from './entities/GridManager'
+import GameObjectManager from './entities/GameObjectManager'
 import { debug_setGlobal } from './lib/debug'
-import EventManager from './entities/event'
+import EventManager from './entities/EventManager'
 import IEvent from './types/IEvent'
 import IGameObjects from './types/IGameObjects'
 
@@ -59,10 +59,10 @@ function create() {
   const grid: IGrid = new GridManager(50, 37, 16)
   const gameObjects: IGameObjects = new GameObjectManager()
   const event: IEvent = new EventManager()
-  const input: IInput = new Input(scene)
+  const input: IInput = new InputManager(scene)
   const renderer: IRenderer = new RendererText(scene, grid)
   const collision: ICollision = new CollisionManager(gameObjects)
-  const player: IPlayerController = new Player(
+  const player: IPlayerController = new PlayerController(
     input,
     collision.isEmpty,
     renderer.renderPlayer,
