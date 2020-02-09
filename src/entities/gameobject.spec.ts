@@ -4,96 +4,96 @@ import GameObjectManager from './gameobject'
 import { GameObjectEntity } from '../types/types'
 
 describe('Game object methods', () => {
-  it('Add gameobject returns id', () => {
-    const gameobject = new GameObjectManager()
+  it('Add game object returns id', () => {
+    const gameObjectManager = new GameObjectManager()
     const object: GameObjectEntity = { x: 0, y: 0 }
 
-    const id = gameobject.addObject(object)
+    const id = gameObjectManager.addObject(object)
     expect(id).to.be.a('number')
   })
 
   it('Add several object will increase the id number', () => {
-    const gameobject = new GameObjectManager()
+    const gameObjectManager = new GameObjectManager()
     const object: GameObjectEntity = { x: 0, y: 0 }
 
-    const id1 = gameobject.addObject(object)
-    const id2 = gameobject.addObject(object)
-    const id3 = gameobject.addObject(object)
+    const id1 = gameObjectManager.addObject(object)
+    const id2 = gameObjectManager.addObject(object)
+    const id3 = gameObjectManager.addObject(object)
 
     expect([id1, id2, id3]).to.be.deep.eq([0, 1, 2])
   })
 
   it('Add game object', () => {
-    const gameobject = new GameObjectManager()
+    const gameObjectManager = new GameObjectManager()
     const object: GameObjectEntity = { x: 0, y: 0 }
 
-    gameobject.addObject(object)
+    gameObjectManager.addObject(object)
 
-    expect(gameobject.getObjects().length).to.be.eq(1)
+    expect(gameObjectManager.getObjects().length).to.be.eq(1)
   })
 
-  it('Remove gameobject', () => {
-    const gameobject = new GameObjectManager()
+  it('Remove game object', () => {
+    const gameObjectManager = new GameObjectManager()
     const object: GameObjectEntity = { x: 0, y: 0 }
 
-    gameobject.addObject(object)
-    const willRemove = gameobject.addObject(object)
-    gameobject.addObject(object)
-    gameobject.removeObject(willRemove)
+    gameObjectManager.addObject(object)
+    const willRemove = gameObjectManager.addObject(object)
+    gameObjectManager.addObject(object)
+    gameObjectManager.removeObject(willRemove)
 
-    expect(gameobject.getObjects().length).to.be.eq(2)
+    expect(gameObjectManager.getObjects().length).to.be.eq(2)
   })
 
-  it('Unique ids for each added gameobject', () => {
-    const gameobject = new GameObjectManager()
+  it('Unique ids for each added game object', () => {
+    const gameObjectManager = new GameObjectManager()
     const object: GameObjectEntity = { x: 0, y: 0 }
 
-    gameobject.addObject(object)
-    gameobject.addObject(object)
-    const willRemove = gameobject.addObject(object)
+    gameObjectManager.addObject(object)
+    gameObjectManager.addObject(object)
+    const willRemove = gameObjectManager.addObject(object)
 
-    gameobject.removeObject(willRemove)
-    const lastAdded = gameobject.addObject(object)
+    gameObjectManager.removeObject(willRemove)
+    const lastAdded = gameObjectManager.addObject(object)
 
     expect(lastAdded).to.be.eq(3)
   })
 
   it('Get solid objects', () => {
-    const gameobject = new GameObjectManager()
+    const gameObjectManager = new GameObjectManager()
     const solidObj: GameObjectEntity = { x: 0, y: 0, isSolid: true }
     const nonSolidObj: GameObjectEntity = { x: 0, y: 0, isSolid: false }
-    gameobject.addObject(solidObj)
-    gameobject.addObject(solidObj)
-    gameobject.addObject(nonSolidObj)
+    gameObjectManager.addObject(solidObj)
+    gameObjectManager.addObject(solidObj)
+    gameObjectManager.addObject(nonSolidObj)
 
-    expect(gameobject.getSolids().length).to.be.eq(2)
+    expect(gameObjectManager.getSolids().length).to.be.eq(2)
   })
 
   it('Get solid objects', () => {
-    const gameobject = new GameObjectManager()
+    const gameObjectManager = new GameObjectManager()
     const nonSolidObj: GameObjectEntity = { x: 0, y: 0, isSolid: false }
-    gameobject.addSolid(nonSolidObj)
+    gameObjectManager.addSolid(nonSolidObj)
 
-    expect(gameobject.getSolids().length).to.be.eq(1)
+    expect(gameObjectManager.getSolids().length).to.be.eq(1)
   })
 
   it('Call destroy method on remove object', () => {
-    const gameobject = new GameObjectManager()
+    const gameObjectManager = new GameObjectManager()
     let destroyCalled = 0
     const destroyFunc = () => { destroyCalled++ }
     const obj: GameObjectEntity = { x: 0, y: 0, isSolid: true, element: { destroy: destroyFunc } }
-    const id = gameobject.addObject(obj)
-    gameobject.removeObject(id)
+    const id = gameObjectManager.addObject(obj)
+    gameObjectManager.removeObject(id)
 
     expect(destroyCalled).to.be.eq(1)
   })
 
   it('Add object and get id by position', () => {
-    const gameobject = new GameObjectManager()
+    const gameObjectManager = new GameObjectManager()
 
-    const validId = gameobject.addObject({ x: 20, y: 22 })
-    gameobject.addObject({ x: 20, y: 20 })
-    const idToCheck = gameobject.getIDByPosition({x: 20, y: 22})
+    const validId = gameObjectManager.addObject({ x: 20, y: 22 })
+    gameObjectManager.addObject({ x: 20, y: 20 })
+    const idToCheck = gameObjectManager.getIDByPosition({x: 20, y: 22})
 
     expect(idToCheck).contains(validId)
   })

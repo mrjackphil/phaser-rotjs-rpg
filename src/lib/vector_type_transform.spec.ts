@@ -4,21 +4,21 @@ import { createGridVectorType, createPixelVectorType, convertVectorType } from '
 
 describe('Create algebraic types', () => {
   it('create GridVector', () => {
-    const vect = createGridVectorType({x: 1, y: 1})
+    const gridVector = createGridVectorType({x: 1, y: 1})
 
-    expect(vect).to.be.deep.equal({ kind: 'grid', value: {x: 1, y: 1}})
+    expect(gridVector).to.be.deep.equal({ kind: 'grid', value: {x: 1, y: 1}})
   })
 
   it('create PixelVector', () => {
-    const vect = createPixelVectorType({x: 1, y: 1})
+    const pixelVector = createPixelVectorType({x: 1, y: 1})
 
-    expect(vect).to.be.deep.equal({ kind: 'pixel', value: {x: 1, y: 1}})
+    expect(pixelVector).to.be.deep.equal({ kind: 'pixel', value: {x: 1, y: 1}})
   })
 
   it('swap vector type', () => {
-    const grid = createGridVectorType({ x: 2, y: 2 })
-    const vect = convertVectorType(grid)
+    const gridVector = createGridVectorType({ x: 2, y: 2 })
+    const pixelVector = convertVectorType(gridVector)
 
-    expect(vect).to.be.deep.equal({ kind: 'pixel', value: {x: 2, y: 2}})
+    expect(pixelVector).to.be.deep.equal({ kind: 'pixel', value: {x: 2, y: 2}})
   })
 })

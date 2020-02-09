@@ -1,12 +1,12 @@
 import { expect } from 'chai'
 import 'mocha'
-import { generateRNGlocation, getRandomNotSolidPosition } from './random'
+import { generateRNGLocation, getRandomNotSolidPosition } from './random'
 import IGrid from '../types/IGrid'
 import ICollision from '../types/ICollision'
 
-describe('<Unstable>Generate random data', () => {
+describe('[Unstable]Generate random data', () => {
   it(`return a valid vector with zeros`, () => {
-    const result = generateRNGlocation(0, 0)
+    const result = generateRNGLocation(0, 0)
     expect(result).to.deep.equal({ x: 0, y: 0 })
   })
 

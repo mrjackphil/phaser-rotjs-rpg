@@ -9,12 +9,12 @@ export default class MapGenerator {
   private render: IRenderer;
   private map: Map;
   private grid: IGrid;
-  private gameobjects: IGameObjects;
+  private gameObjects: IGameObjects;
 
-  constructor(render: IRenderer, gameobjects: IGameObjects, grid: IGrid) {
+  constructor(render: IRenderer, gameObjects: IGameObjects, grid: IGrid) {
     this.render = render
     this.grid = grid
-    this.gameobjects = gameobjects
+    this.gameObjects = gameObjects
   }
 
   public generate() {
@@ -29,8 +29,8 @@ export default class MapGenerator {
   private drawDoors() {
     if (this.map instanceof Digger) {
       const rooms = this.map.getRooms();
-      for (var i=0; i<rooms.length; i++) {
-          var room = rooms[i];
+      for (let i=0; i<rooms.length; i++) {
+          const room = rooms[i];
           room.getDoors(this.onRenderDoors.bind(this));
       }
     }
@@ -39,7 +39,7 @@ export default class MapGenerator {
   private onCellRender(x: number, y: number, isWall: 0 | 1) {
     if (isWall) {
       this.onRenderWall(x, y)
-      this.gameobjects.addSolid({ x, y })
+      this.gameObjects.addSolid({ x, y })
     }
   }
 
@@ -49,6 +49,6 @@ export default class MapGenerator {
 
   private onRenderDoors(x: number, y: number) {
     const element = this.render.renderDoor(x, y)
-    this.gameobjects.addObject({ x, y, isSolid: true, element })
+    this.gameObjects.addObject({ x, y, isSolid: true, element })
   }
 }

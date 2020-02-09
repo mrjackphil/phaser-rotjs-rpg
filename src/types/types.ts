@@ -34,7 +34,7 @@ export interface PixelVector {
 export interface Action extends Partial<ID> {
   key: string;
   action: () => void;
-  condition?: (param: any) => boolean;
+  condition?: (param: unknown) => boolean;
 }
 
 export type ActionParams = any

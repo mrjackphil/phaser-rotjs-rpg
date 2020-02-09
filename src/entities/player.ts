@@ -9,19 +9,19 @@ const PLAYER_DEFAULT_MOVE_SPEED = 2
 export default class Player implements IPlayerController {
   private input: IInput
   private isEmpty: (gridPos: GridVector) => boolean
-  private tileSize: number
-  private element: Vector
+  private readonly tileSize: number
+  private readonly element: Vector
   private speed: number
 
   constructor(
     input: IInput,
     isEmptyFunc: (gridPos: GridVector) => boolean,
     renderPlayerFunc: () => Vector,
-    tilesize: number
+    tileSize: number
   ) {
     this.input = input
     this.isEmpty = isEmptyFunc
-    this.tileSize = tilesize
+    this.tileSize = tileSize
     this.element = renderPlayerFunc()
     this.setSpeed(PLAYER_DEFAULT_MOVE_SPEED)
   }
@@ -61,19 +61,19 @@ export default class Player implements IPlayerController {
 
   private move() {
     const { element, tileSize, isEmpty: collision } = this
-    const vect = this.getMovementVector()
-    if (vect.value.x === 0 && vect.value.y === 0) { return }
+    const movementVector = this.getMovementVector()
+    if (movementVector.value.x === 0 && movementVector.value.y === 0) { return }
 
-    const nextX = element.x + vect.value.x
-    const nextY = element.y + vect.value.y
+    const nextX = element.x + movementVector.value.x
+    const nextY = element.y + movementVector.value.y
 
-    const movementVector = createPixelVectorType({ x: nextX, y: nextY })
-    const movementXVector = createPixelVectorType({ x: nextX, y: element.y })
-    const movementYVector = createPixelVectorType({ x: element.x, y: nextY })
+    const movementPixelVector = createPixelVectorType({ x: nextX, y: nextY })
+    const movementPixelXVector = createPixelVectorType({ x: nextX, y: element.y })
+    const movementPixelYVector = createPixelVectorType({ x: element.x, y: nextY })
 
-    const nextGridToCollide = findCellInPosition(tileSize, movementVector)
-    const nextXGridToCollide = findCellInPosition(tileSize, movementXVector)
-    const nextYGridToCollide = findCellInPosition(tileSize, movementYVector)
+    const nextGridToCollide = findCellInPosition(tileSize, movementPixelVector)
+    const nextXGridToCollide = findCellInPosition(tileSize, movementPixelXVector)
+    const nextYGridToCollide = findCellInPosition(tileSize, movementPixelYVector)
 
     if (collision(nextGridToCollide)) {
       element.x = nextX
@@ -87,20 +87,20 @@ export default class Player implements IPlayerController {
 
   private getMovementVector(): PixelVector {
     const { speed, input } = this
-    const vect = { x: 0, y: 0 }
+    const movementVector = { x: 0, y: 0 }
 
     if (input.isLeft()) {
-        vect.x = -speed;
+        movementVector.x = -speed;
     } else if (input.isRight()) {
-        vect.x = speed;
+        movementVector.x = speed;
     }
 
     if (input.isUp()) {
-        vect.y = -speed;
+        movementVector.y = -speed;
     } else if (input.isDown()) {
-        vect.y = speed;
+        movementVector.y = speed;
     }
 
-    return createPixelVectorType(vect)
+    return createPixelVectorType(movementVector)
   }
 }

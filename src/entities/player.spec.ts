@@ -49,7 +49,7 @@ describe('Player Controller', () => {
   })
 
   it('Press left/down but down is blocked', () => {
-    const tilesize = 16
+    const tileSize = 16
     const row = 5
     const col = 6
 
@@ -57,21 +57,21 @@ describe('Player Controller', () => {
       { ...inputMock, isLeft: () => true, isDown: () => true },
       (v) => v.value.x !== col - 1,
       renderMock,
-      tilesize
+      tileSize
     )
 
-    const speed = tilesize / 2
+    const speed =  tileSize / 2
 
     pl.setSpeed(speed)
     pl.moveToCell(col, row)
     pl.update()
     pl.update()
 
-    expect(pl.getPixelPosition().value).to.contain({ x: col * tilesize - speed, y: row * tilesize + (speed * 2) })
+    expect(pl.getPixelPosition().value).to.contain({ x: col *  tileSize - speed, y: row *  tileSize + (speed * 2) })
   })
 
   it('Press left/down but down is blocked and zero cells blocked', () => {
-    const tilesize = 16
+    const tileSize = 16
 
     const pl = new Player(
       { ...inputMock, isLeft: () => true, isDown: () => true },
@@ -81,18 +81,18 @@ describe('Player Controller', () => {
         && v.value.x !== 4
       ,
       renderMock,
-      tilesize
+      tileSize
     )
 
-    pl.setSpeed(tilesize)
+    pl.setSpeed(tileSize)
     pl.moveToCell(5, 5)
     pl.update()
 
-    expect(pl.getPixelPosition().value).to.contain({ x: 5 * tilesize, y: 5 * tilesize + tilesize })
+    expect(pl.getPixelPosition().value).to.contain({ x: 5 * tileSize, y: 5 * tileSize + tileSize })
   })
 
   it('Get current grid position', () => {
-    const tilesize = 4
+    const tileSize = 4
     const pl = new Player(
       { ...inputMock, isLeft: () => true, isDown: () => true },
       (v) =>
@@ -101,7 +101,7 @@ describe('Player Controller', () => {
         && v.value.x !== 4
       ,
       renderMock,
-      tilesize
+      tileSize
     )
     const gridPos = createGridVectorType({ x: 3, y: 4 })
 

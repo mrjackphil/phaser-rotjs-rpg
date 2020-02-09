@@ -57,18 +57,18 @@ function preload() {
 function create() {
   const scene = this as Phaser.Scene
   const grid: IGrid = new GridManager(50, 37, 16)
-  const gameobjects: IGameObjects = new GameObjectManager()
+  const gameObjects: IGameObjects = new GameObjectManager()
   const event: IEvent = new EventManager()
   const input: IInput = new Input(scene)
   const renderer: IRenderer = new RendererText(scene, grid)
-  const collision: ICollision = new CollisionManager(gameobjects)
+  const collision: ICollision = new CollisionManager(gameObjects)
   const player: IPlayerController = new Player(
     input,
     collision.isEmpty,
     renderer.renderPlayer,
     grid.getTileSize()
   )
-  const map = new MapGenerator(renderer, gameobjects, grid)
+  const map = new MapGenerator(renderer, gameObjects, grid)
 
   map.generate()
 
@@ -85,7 +85,7 @@ function create() {
     event,
     scene,
     grid,
-    gameobjects,
+    objects: gameObjects,
     input,
     renderer,
     collision,

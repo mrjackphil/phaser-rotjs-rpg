@@ -1,12 +1,12 @@
 import { PixelVector, GridVector } from "../types/types"
 
-export function findCenterPositionOfCell(tilesize: number, { value: vect }: GridVector): PixelVector {
-  const value = { x: vect.x * tilesize, y: vect.y * tilesize }
+export function findCenterPositionOfCell(tileSize: number, { value: vector }: GridVector): PixelVector {
+  const value = { x: vector.x * tileSize, y: vector.y * tileSize }
   return { kind: 'pixel', value }
 }
 
-export function findCellInPosition(tilesize: number, { value: vect }: PixelVector): GridVector {
-  const value = { x: Math.round(vect.x / tilesize), y: Math.round(vect.y / tilesize) };
+export function findCellInPosition(tileSize: number, { value: vector }: PixelVector): GridVector {
+  const value = { x: Math.round(vector.x / tileSize), y: Math.round(vector.y / tileSize) };
   return { kind: 'grid', value }
 }
 

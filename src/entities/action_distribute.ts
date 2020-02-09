@@ -4,7 +4,7 @@ import IActionDistributor from "../types/IActionDistributor"
 export default class ActionDistributor implements IActionDistributor {
     private actions: Action[] = [open_door, test_action]
 
-    public getAction(key: string, params?: any) {
+    public getAction(key: string, params?: unknown) {
         const action = this.getByKey(key)
 
         ActionDistributor.paramValidation(action, params)
@@ -27,7 +27,7 @@ export default class ActionDistributor implements IActionDistributor {
 
     private static paramValidation(
         action: Action,
-        params?: any
+        params?: unknown
     ) {
 
         if (!action.condition) { return true }
