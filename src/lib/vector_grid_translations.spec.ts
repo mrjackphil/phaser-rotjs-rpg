@@ -3,7 +3,7 @@ import 'mocha'
 import * as Util from './vector_grid_traslations'
 import { PixelVector, GridVector } from '../types/types'
 
-describe('Generate util functions', () => {
+describe('Vector convertation', () => {
   it('convert vector grid -> precise pixel', () => {
     const vector = { kind: 'grid', value: { x: 1, y: 1 } } as GridVector
 
