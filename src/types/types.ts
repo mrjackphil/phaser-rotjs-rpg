@@ -1,3 +1,5 @@
+import {ACTIONS} from "../entities/ActionDistributor"
+
 export interface GameObjectEntity
   extends Vector, Partial<GameObjectParameters> {}
 
@@ -32,9 +34,7 @@ export interface PixelVector {
 }
 
 export interface Action extends Partial<ID> {
-  key: string;
+  key: ACTIONS;
   action: () => void;
   condition?: (param: unknown) => boolean;
 }
-
-export type ActionParams = any

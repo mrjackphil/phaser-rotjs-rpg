@@ -1,10 +1,15 @@
 import {Action} from "../types/types"
 import IActionDistributor from "../types/IActionDistributor"
 
+export enum ACTIONS {
+    TEST,
+    OPEN_DOOR
+}
+
 export default class ActionDistributor implements IActionDistributor {
     private actions: Action[] = [open_door, test_action]
 
-    public getAction(key: string, params?: unknown) {
+    public getAction(key: ACTIONS, params?: unknown) {
         const action = this.getByKey(key)
 
         ActionDistributor.paramValidation(action, params)
@@ -12,7 +17,7 @@ export default class ActionDistributor implements IActionDistributor {
         return action
     }
 
-    private getByKey(key: string) {
+    private getByKey(key: ACTIONS) {
         const found = this.actions.filter(a => a.key === key)
 
         if (found.length > 1) {
@@ -42,12 +47,12 @@ export default class ActionDistributor implements IActionDistributor {
 }
 
 const test_action = {
-    key: 'test_with_parameter',
+    key: ACTIONS.TEST,
     action: () => null,
     condition: (params) => typeof params === "boolean"
 }
 
 const open_door = {
-    key: "open_door",
+    key: ACTIONS.OPEN_DOOR,
     action: () => null,
 }

@@ -1,25 +1,18 @@
-import { expect } from 'chai'
+import {expect} from 'chai'
 import 'mocha'
-import ActionDistributor from '../entities/ActionDistributor'
+import ActionDistributor, {ACTIONS} from '../entities/ActionDistributor'
 
 describe('Action dispatcher', () => {
-  it('get action', () => {
+  it('get action by enumb', () => {
     const dispatcher = new ActionDistributor()
-    const action = dispatcher.getAction('open_door')
+    const action = dispatcher.getAction(ACTIONS.OPEN_DOOR)
     expect(action).to.contain.keys('action')
-  })
-
-  it('will cause error if action not exist', () => {
-    const dispatcher = new ActionDistributor()
-    const action = () => dispatcher.getAction('some_strange_action')
-
-    expect(action).to.throw('Action not found')
   })
 
   it('if not valid parameters - will send error', () => {
     const dispatcher = new ActionDistributor()
     const action = () =>
-        dispatcher.getAction('test_with_parameter', 'true')
+        dispatcher.getAction(ACTIONS.TEST, 'true')
 
     expect(action).to.throw('Parameter is not valid')
   })
@@ -27,10 +20,10 @@ describe('Action dispatcher', () => {
   it('if valid parameters - will return test action', () => {
     const dispatcher = new ActionDistributor()
     const action =
-       dispatcher.getAction('test_with_parameter', true)
+       dispatcher.getAction(ACTIONS.TEST, true)
 
     expect(action)
         .to.be.deep
-        .contain({ key: 'test_with_parameter' } )
+        .contain({ key: ACTIONS.TEST } )
   })
 })
