@@ -1,4 +1,4 @@
-import {Action} from "../types/types"
+import {Action, Vector} from "../types/types"
 import IActionDistributor from "../types/IActionDistributor"
 
 export enum ACTIONS {
@@ -6,15 +6,16 @@ export enum ACTIONS {
     OPEN_DOOR
 }
 
+type ActionParams<T> =
+  T extends ACTIONS.TEST ? boolean
+: T extends ACTIONS.OPEN_DOOR ? { position: Vector }
+: {}
+
 export default class ActionDistributor implements IActionDistributor {
     private actions: Action[] = [open_door, test_action]
 
-    public getAction(key: ACTIONS, params?: unknown) {
-        const action = this.getByKey(key)
-
-        ActionDistributor.paramValidation(action, params)
-
-        return action
+    public getAction<T extends ACTIONS>(key: T, params?: ActionParams<T>) {
+        return this.getByKey(key)
     }
 
     private getByKey(key: ACTIONS) {
@@ -29,30 +30,15 @@ export default class ActionDistributor implements IActionDistributor {
 
         return found[0]
     }
-
-    private static paramValidation(
-        action: Action,
-        params?: unknown
-    ) {
-
-        if (!action.condition) { return true }
-
-        const isValid = action.condition(params)
-        if (!isValid) {
-            throw Error("Parameter is not valid")
-        }
-
-        return true
-    }
 }
+
 
 const test_action = {
     key: ACTIONS.TEST,
-    action: () => null,
-    condition: (params) => typeof params === "boolean"
+    action: (params: ActionParams<ACTIONS.TEST>) => params,
 }
 
-const open_door: Action<{ param: string }> = {
+const open_door = {
     key: ACTIONS.OPEN_DOOR,
-    action: () => null,
+    action: (params: ActionParams<ACTIONS.OPEN_DOOR>) => params,
 }
