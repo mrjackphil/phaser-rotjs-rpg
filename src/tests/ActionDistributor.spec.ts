@@ -5,7 +5,7 @@ import ActionDistributor, {ACTIONS} from '../entities/ActionDistributor'
 describe('Action dispatcher', () => {
   it('get action by enum', () => {
     const dispatcher = new ActionDistributor()
-    const action = dispatcher.getAction(ACTIONS.OPEN_DOOR)
+    const action = dispatcher.getAction(ACTIONS.REMOVE_DOOR)
     expect(action).to.contain.keys('action')
   })
 

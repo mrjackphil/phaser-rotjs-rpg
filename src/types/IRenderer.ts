@@ -1,6 +1,6 @@
-import { Vector } from "./types"
+import {Destroyable, Vector} from "./types"
 export default interface IRenderer {
-  renderWall: (x: number, y: number) => void
-  renderDoor: (x: number, y: number) => void
-  renderPlayer: (x?: number, y?: number) => Vector
+  renderWall: (x: number, y: number) => Vector & Destroyable
+  renderDoor: (x: number, y: number) => Vector & Destroyable
+  renderPlayer: (x?: number, y?: number) => Vector & Destroyable
 }

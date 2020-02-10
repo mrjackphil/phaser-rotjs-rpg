@@ -27,6 +27,8 @@ export default class RendererText implements IRenderer {
     )
 
     wall.setAlpha(0.5)
+
+    return wall
   }
 
   public renderPlayer(x: number = 0, y: number = 0) {

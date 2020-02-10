@@ -5,7 +5,7 @@ import MapGenerator from './entities/MapGenerator'
 import RendererText from './entities/RendererText'
 import {getRandomNotSolidPosition} from './lib/random'
 import CollisionManager from './entities/CollisionManager'
-import {Updated} from './types/types'
+import {GridVector, Updated} from './types/types'
 import IRenderer from "./types/IRenderer"
 import IInput from "./types/IInput"
 import IGrid from "./types/IGrid"
@@ -18,6 +18,7 @@ import EventManager from './entities/EventManager'
 import IEvent from './types/IEvent'
 import IGameObjects from './types/IGameObjects'
 import ActionDistributor, {ACTIONS} from "./entities/ActionDistributor"
+import {createGridVectorType} from "./lib/vector_type_transform"
 
 document.body.style.margin = "0"
 document.body.style.padding = "0"
@@ -82,7 +83,7 @@ function create() {
   entitiesToUpdate.push(player)
   entitiesToUpdate.push(event)
 
-  debugAction(event)
+  debugAction(player, gameObjects, event)
   debug_setGlobal({
     event,
     scene,
@@ -102,13 +103,55 @@ function update() {
   )
 }
 
-function debugAction(eventManager: IEvent) {
+function debugAction(
+  character: IPlayerController,
+  gameObjects: IGameObjects,
+  eventManager: IEvent
+) {
   const actions = new ActionDistributor()
-  const open_door = actions.getAction(ACTIONS.OPEN_DOOR, { position: { x: 0, y: 0 } })
+
+  function getNearbyGridPositions(gridPosition: GridVector) {
+    const { value } = gridPosition
+    const { x, y } = value
+
+    const topLeft       =  { x: x - 1, y: y - 1 }
+    const topCenter     =  { x,        y: y - 1 }
+    const topRight      =  { x: x + 1, y: y - 1 }
+    const middleLeft    =  { x: x - 1, y }
+    const middleCenter  =  { x,        y }
+    const middleRight   =  { x: x + 1, y }
+    const bottomLeft    =  { x: x - 1, y: y + 1 }
+    const bottomCenter  =  { x,        y: y + 1 }
+    const bottomRight   =  { x: x + 1, y: y + 1 }
+
+    return [
+      topLeft, topCenter, topRight,
+      middleLeft, middleCenter, middleRight,
+      bottomLeft, bottomCenter, bottomRight
+    ].map( e => createGridVectorType(e) )
+  }
+
+  function createAction() {
+    const positions = getNearbyGridPositions(character.getGridPosition())
+
+    return positions.map( position => {
+      return actions.getAction(
+        ACTIONS.REMOVE_DOOR,
+        {
+          position,
+          objects: gameObjects
+        }
+      )
+    })
+  }
 
   addEventListener('keydown', (ev) => {
     if (ev.key === 'e') {
-      eventManager.add(open_door)
+      const open_door_actions = createAction()
+
+      open_door_actions.forEach( action => {
+        eventManager.add(action)
+      })
     }
   })
 }

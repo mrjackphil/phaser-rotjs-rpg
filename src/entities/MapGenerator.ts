@@ -38,13 +38,9 @@ export default class MapGenerator {
 
   private onCellRender(x: number, y: number, isWall: 0 | 1) {
     if (isWall) {
-      this.onRenderWall(x, y)
-      this.gameObjects.addSolid({ x, y })
+      const element = this.render.renderWall(x, y)
+      this.gameObjects.addObject({ x, y, isSolid: true, element })
     }
-  }
-
-  private onRenderWall(x: number, y: number) {
-    this.render.renderWall(x, y)
   }
 
   private onRenderDoors(x: number, y: number) {

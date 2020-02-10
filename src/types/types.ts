@@ -38,3 +38,7 @@ export interface Action<T = unknown> extends Partial<ID> {
   action: (params: T) => void;
   params?: T;
 }
+
+export interface Destroyable {
+ destroy: () => void;
+}

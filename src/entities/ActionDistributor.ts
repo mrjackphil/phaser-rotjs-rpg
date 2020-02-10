@@ -1,21 +1,23 @@
-import {Action, Vector} from "../types/types"
+import {Action, GridVector} from "../types/types"
 import IActionDistributor from "../types/IActionDistributor"
+import IGameObjects from "../types/IGameObjects"
 
 export enum ACTIONS {
     TEST,
-    OPEN_DOOR
+    REMOVE_DOOR
 }
 
 type ActionParams<T> =
   T extends ACTIONS.TEST ? boolean
-: T extends ACTIONS.OPEN_DOOR ? { position: Vector }
+: T extends ACTIONS.REMOVE_DOOR ? { position: GridVector, objects: IGameObjects }
 : {}
 
 export default class ActionDistributor implements IActionDistributor {
     private actions: Action[] = [open_door, test_action]
 
     public getAction<T extends ACTIONS>(key: T, params?: ActionParams<T>) {
-        return this.getByKey(key)
+      const action = this.getByKey(key)
+      return {...action, params }
     }
 
     private getByKey(key: ACTIONS) {
@@ -39,6 +41,11 @@ const test_action = {
 }
 
 const open_door = {
-    key: ACTIONS.OPEN_DOOR,
-    action: (params: ActionParams<ACTIONS.OPEN_DOOR>) => params,
+    key: ACTIONS.REMOVE_DOOR,
+    action: (params: ActionParams<ACTIONS.REMOVE_DOOR>) => {
+        const { position, objects } = params
+        const idToRemove = objects.getIDByPosition(position.value)
+
+        objects.removeObject(idToRemove[0])
+    },
 }
