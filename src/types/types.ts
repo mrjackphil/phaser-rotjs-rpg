@@ -33,8 +33,9 @@ export interface PixelVector {
   value: Vector;
 }
 
-export interface Action extends Partial<ID> {
+export interface Action<T = unknown> extends Partial<ID> {
   key: ACTIONS;
-  action: () => void;
-  condition?: (param: unknown) => boolean;
+  action: (params: T) => void;
+  condition?: (param: T) => boolean;
+  params?: T;
 }

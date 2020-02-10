@@ -52,7 +52,7 @@ const test_action = {
     condition: (params) => typeof params === "boolean"
 }
 
-const open_door = {
+const open_door: Action<{ param: string }> = {
     key: ACTIONS.OPEN_DOOR,
     action: () => null,
 }

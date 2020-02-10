@@ -1,5 +1,6 @@
 import { Action } from "../types/types"
 import IEvent from "../types/IEvent"
+import {ACTIONS} from "./ActionDistributor"
 
 export default class EventManager implements IEvent {
   private events: Action[] = []
@@ -15,7 +16,7 @@ export default class EventManager implements IEvent {
   }
 
   public update() {
-    this.events.forEach( e => e.action() )
+    this.events.forEach( e => e.action(e.params) )
     this.events = []
   }
 
@@ -24,7 +25,7 @@ export default class EventManager implements IEvent {
   }
 
   public getEventByID(id: number) {
-    const emptyAction = { action: () => null, key: "" }
+    const emptyAction = { action: () => null, key: ACTIONS.TEST }
     return this.events.filter( event => event.id === id )[0] || emptyAction
   }
 }
